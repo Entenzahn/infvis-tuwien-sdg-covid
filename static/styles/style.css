@@ -1,0 +1,60 @@
+body {
+    padding-left: 5em;
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+    color: #222222;
+    background-color: #fff;
+}
+
+.container {
+    display: table-cell;
+    vertical-align:top;
+    height: 500px;
+    padding: 10px;
+    border: 0px solid black;
+    text-align: center;
+    font-size: large;
+}
+
+#indicator-list {
+    text-align: right;
+    font-size: medium;
+    color:#000;
+}
+
+#indicator-list .active{
+    text-align: right;
+    font-size: medium;
+    color:purple;
+    font-weight:bold;
+}
+
+#indicator-list p {
+    padding:0px;
+    margin:0px;
+}
+
+.biplot_indicator.active {
+    stroke: purple;
+    fill: purple;
+    marker-end: url(#arrow-active);
+}
+
+div.tooltip {
+    background-color:#AADDDD;
+    padding: 5px;
+    border-radius: 5px;
+    opacity: 0.95;
+}
+
+div.tooltip h3{
+    font-size: 1em;
+    padding:0px;
+    margin:0px;
+}
+
+div.tooltip p{
+    font-size: 0.8em;
+    padding:0px;
+    margin:0px;
+}
+
