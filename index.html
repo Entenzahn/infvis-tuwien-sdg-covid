@@ -45,18 +45,17 @@
     // initBiplot(biplot_cnt, biplot_ind);
     var tooltip = initTooltip();
 
-  <!--  //Some of the arrows were hard to select so I added this additional quick menu for convenience
-    d3.select("#indicator-list")
-    .selectAll("p")
-    .data(d3.entries(data))
-    .enter()
-    .filter(function (d){return (d.key !== "Country" && d.key !== "LOCATION")})
-    .append("p").attr("indicator",function (d){return d.key}).text(function (d){return d.key})
-        .on("click", activateIndicator);
+    //Some of the arrows were hard to select so I added this additional quick menu for convenience
+    //d3.select("#indicator-list")
+    //.selectAll("p")
+    //.data(d3.entries(data))
+    //.enter()
+    //.filter(function (d){return (d.key !== "Country" && d.key !== "LOCATION")})
+    //.append("p").attr("indicator",function (d){return d.key}).text(function (d){return d.key})
+     //   .on("click", activateIndicator);
 
     //Click anywhere to deselect indicator
-    d3.select("body").on("click", deactivateIndicator);
--->
+    //d3.select("body").on("click", deactivateIndicator);
 
 </script>
 
