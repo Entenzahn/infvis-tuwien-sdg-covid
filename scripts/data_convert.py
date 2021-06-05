@@ -15,6 +15,7 @@ def readExcel(sheetname):
 sheet_names = ["SDG-1", "SDG-2", "SDG-3", "SDG-4", "SDG-5", "SDG-6", "SDG-7", "SDG-8", "SDG-9", "SDG-10", "SDG-11",
                "SDG-12", "SDG-13", "SDG-15", "SDG-16"]
 
+#it's 2.30 in the morning and i want to die pandas is stupid and i refuse to explain this
 l_sdg = list()
 
 for i in range(0, (len(sheet_names))):
@@ -49,7 +50,7 @@ df_cov = df_vac.merge(
     df_test, how="inner", left_on=["State", "Updated On"], right_on=["State", "Date"]
 ).drop(columns=["Date"]).merge(
     df_statenames, how="inner", left_on="State", right_on="Complete name"
-).drop(columns=["Complete name"])
+).drop(columns=["Complete name"]).rename(columns={"Updated On":"Date"})
 
 # Since we want to go "up to" a certain date, better to store the individual dated measurements in a sorted array.
 # Be sure to convert NaN -> null
@@ -57,7 +58,7 @@ dict_cov_grp = df_cov \
     .where(pd.notnull(df_cov), None) \
     .groupby("ID name") \
     .apply(lambda x: sorted(
-    x.to_dict('records'), key=lambda k: k["Updated On"])
+    x.to_dict('records'), key=lambda k: k["Date"])
            ).to_dict()
 
 # If we want a straight dictionary State -> Date -> Data then use this:
