@@ -7,7 +7,7 @@ let mapData = null;
 function initMap() {
 
     // loads the world map as topojson
-    d3.json("../scripts/data/india.json").then(function (countries) {
+    d3.json("static/data/india.json").then(function (countries) {
 
         // defines the map projection method and scales the map within the SVG
         let projection = d3.geoEqualEarth()

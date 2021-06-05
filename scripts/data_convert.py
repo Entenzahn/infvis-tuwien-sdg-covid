@@ -1,20 +1,69 @@
 import pandas as pd
+import json
 
+# Load Covid-19 data
 df_vac = pd.read_csv("data/covid_vaccine_statewise.csv")
-df_cov = pd.read_csv("data/covid_19_india.csv")
+df_inf = pd.read_csv("data/covid_19_india.csv")
 df_test = pd.read_csv("data/StatewiseTestingDetails.csv")
-df_sdg = pd.read_excel("data/rawPovertyRateData.xlsx", engine="openpyxl")
+
+
+def readExcel(sheetname):
+        return pd.read_excel("data/rawPovertyRateData.xlsx", engine="openpyxl", sheet_name=sheetname, nrows=36,
+                             skiprows=lambda x: x in [1, 1], header=0).drop(columns="SNO", errors="ignore")
+
+
+sheet_names = ["SDG-1", "SDG-2", "SDG-3", "SDG-4", "SDG-5", "SDG-6", "SDG-7", "SDG-8", "SDG-9", "SDG-10", "SDG-11",
+               "SDG-12", "SDG-13", "SDG-15", "SDG-16"]
+
+l_sdg = list()
+
+for i in range(0, (len(sheet_names))):
+    l_sdg.append(readExcel(sheet_names[i]))
+
+df_sdg = l_sdg[0]
+for i in range(1,len(l_sdg)):
+    df_sdg = df_sdg.merge(l_sdg[i], how="inner", on=["States/UTs"])
+
+# Load state name to Map ID dictionary
 df_statenames = pd.read_excel("data/jsonStateNamesIDs.xlsx", engine="openpyxl", skiprows=1)
 
-print(df_sdg)
-print(df_statenames)
-df_statenames = df_statenames.replace('\n','',regex=True)
+# Clean Excel linebreaks
+df_statenames = df_statenames.replace('\n', '', regex=True)
 
-print(df_vac)
-print(df_cov)
-print(df_test)
+# Join SDG dataframe with map IDs
+df_sdg = pd.merge(df_sdg, df_statenames, how="inner", left_on="States/UTs", right_on="Complete name")
+# Store the SDG info as JSON file, using map ID to index the indicator dictionary of the state
 
-df = pd.merge(df_sdg, df_statenames, how="inner", left_on="States/UTs", right_on = "Complete name")
+df_sdg.set_index(df_sdg["ID name"]).to_json(r'../static/data/sdg.json', indent=2)
 
-df.to_json(r'../static/data/sdg.json')
+# To instead list indicators by country:
+# df_sdg.set_index(df_sdg["ID name"]).transpose().to_json(r'../static/data/sdg.json')
 
+# Transform date format to be in line with the other two dataframes
+df_vac["Updated On"] = pd.to_datetime(df_vac["Updated On"], format="%d/%m/%Y").dt.strftime("%Y-%m-%d")
+
+# Merge dataframes across (State, Date) tuples
+df_cov = df_vac.merge(
+    df_inf, how="inner", left_on=["State", "Updated On"], right_on=["State/UnionTerritory", "Date"]
+).drop(columns=["State/UnionTerritory","Date"]).merge(
+    df_test, how="inner", left_on=["State", "Updated On"], right_on=["State", "Date"]
+).drop(columns=["Date"]).merge(
+    df_statenames, how="inner", left_on="State", right_on="Complete name"
+).drop(columns=["Complete name"])
+
+# Since we want to go "up to" a certain date, better to store the individual dated measurements in a sorted array.
+# Be sure to convert NaN -> null
+dict_cov_grp = df_cov \
+    .where(pd.notnull(df_cov), None) \
+    .groupby("ID name") \
+    .apply(lambda x: sorted(
+    x.to_dict('records'), key=lambda k: k["Updated On"])
+           ).to_dict()
+
+# If we want a straight dictionary State -> Date -> Data then use this:
+# Many ways to create nested JSON, for instance group_by or set index and to_dict("index")
+# dict_cov_grp = df_cov.where(pd.notnull(df_cov),None).groupby("State").apply(lambda x:x.set_index("Updated On").to_dict('index')).to_dict()
+
+# Store JSON from Covid dict
+with open("../static/data/covid.json", "w") as fp:
+    json.dump(dict_cov_grp, fp, indent=2)
