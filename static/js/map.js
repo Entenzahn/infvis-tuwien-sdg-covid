@@ -11,8 +11,8 @@ function initMap() {
 
         // defines the map projection method and scales the map within the SVG
         let projection = d3.geoEqualEarth()
-            .scale(1300)
-            .translate([-1.5*mapWidth, 1.15*mapHeight]);
+            .scale(1200)
+            .translate([-1.3*mapWidth, 1.1*mapHeight]);
 
         // generates the path coordinates from topojson
         let path = d3.geoPath()
