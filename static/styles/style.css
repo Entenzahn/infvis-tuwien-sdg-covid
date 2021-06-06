@@ -5,14 +5,19 @@ body {
     background-color: #fff;
 }
 
+div#main{
+    max-width:90%
+}
+
 .container {
-    display: table-cell;
     vertical-align:top;
     height: 500px;
     padding: 10px;
     border: 0px solid black;
     text-align: center;
     font-size: large;
+    float:left;
+    max-width:initial;
 }
 
 #indicator-list {

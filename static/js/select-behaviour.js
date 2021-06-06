@@ -5,7 +5,7 @@ function activateSDG(sdg_ind){
     //Map behaviour on SDG indicator change:
 
     //Bar chart behaviour:
-    createVerticalComp(sdg_ind, cov_ind)
+    createVerticalComp()
 
     //Scatterplot:
 

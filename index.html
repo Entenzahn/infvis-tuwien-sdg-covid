@@ -12,6 +12,7 @@
     <script src="static/js/data_load.js"></script>
     <script src="static/js/dropdown.js"></script>
     <script src="static/js/select-behaviour.js"></script>
+    <script src="static/js/vertical-compare.js"></script>
 
 </head>
 <body>
@@ -20,7 +21,7 @@
 <p>Philipp Piwonka - 12002294</p>
 <p>Alice Martzloff - 12041022</p>
 
-<div>
+<div id="main">
     <!-- Choropleth map for SDG indicator -->
     <div class="container">
         <p id="selector_sdg">
@@ -35,6 +36,10 @@
             <select></select>
         </p>
         <svg id="svg_state_compare"></svg>
+    </div>
+
+    <div class="ui">
+        <svg id="date_select"></svg>
     </div>
 
     <!-- SDG/Covid scatter plot -->
