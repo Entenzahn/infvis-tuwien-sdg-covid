@@ -1,3 +1,5 @@
+//REFERENCE ONLY - DELETE WHEN DONE
+
 function initTooltip(){
 
     //Tooltip will be hidden in the beginning

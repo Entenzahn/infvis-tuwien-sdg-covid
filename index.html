@@ -9,10 +9,9 @@
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.0/topojson.min.js"></script>
     <script src="static/js/map.js"></script>
-    <script src="static/js/biplot.js"></script>
-    <script src="static/js/link.js"></script>
-    <script src="static/js/tooltip.js"></script>
-    <script src="static/js/data_test.js"></script>
+    <script src="static/js/data_load.js"></script>
+    <script src="static/js/dropdown.js"></script>
+    <script src="static/js/select-behaviour.js"></script>
 
 </head>
 <body>
@@ -21,43 +20,37 @@
 <p>Philipp Piwonka - 12002294</p>
 <p>Alice Martzloff - 12041022</p>
 
-<!-- Container for the map and the label for the selected indicator -->
-<div class="container">
-    <p id="indicator">&nbsp;</p>
-    <svg id="svg_map"></svg>
-</div>
-<!-- Container for the biplot and the label for the selected country -->
-<div class="container">
-    <p id="country">&nbsp;</p>
-    <svg id="svg_chart"></svg>
-</div>
-<!-- Container for indicator selection -->
-<div class="container">
-    <p id="indicator-list"><b>Alternative select for indicators:</b></p>
+<div>
+    <!-- Choropleth map for SDG indicator -->
+    <div class="container">
+        <p id="selector_sdg">
+            <select></select>
+        </p>
+        <svg id="svg_map"></svg>
+    </div>
+
+    <!-- State comparison for covid indicator -->
+    <div class="container">
+        <p id="selector_covid">
+            <select></select>
+        </p>
+        <svg id="svg_state_compare"></svg>
+    </div>
+
+    <!-- SDG/Covid scatter plot -->
+    <div class="container">
+        <svg id="svg_scatterplot"></svg>
+    </div>
+
+    <!-- Covid indicator development per state -->
+    <div class="container">
+        <svg id="svg_state_trends"></svg>
+    </div>
 </div>
 
 <script>
-    // reads the data from the server using Jinja2
-    // let data = {{ data | safe }};
-    // let biplot_ind = {{ biplot_ind | safe }};
-    // let biplot_cnt = {{ biplot_cnt | safe }};
-
     initMap();
-    test_data();
-    // initBiplot(biplot_cnt, biplot_ind);
-    var tooltip = initTooltip();
-
-    //Some of the arrows were hard to select so I added this additional quick menu for convenience
-    //d3.select("#indicator-list")
-    //.selectAll("p")
-    //.data(d3.entries(data))
-    //.enter()
-    //.filter(function (d){return (d.key !== "Country" && d.key !== "LOCATION")})
-    //.append("p").attr("indicator",function (d){return d.key}).text(function (d){return d.key})
-     //   .on("click", activateIndicator);
-
-    //Click anywhere to deselect indicator
-    //d3.select("body").on("click", deactivateIndicator);
+    load_data();
 
 </script>
 

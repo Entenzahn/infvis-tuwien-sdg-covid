@@ -1,1 +1,0 @@
-# infvis-tuwien-sdg-covid

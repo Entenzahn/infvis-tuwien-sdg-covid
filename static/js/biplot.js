@@ -1,3 +1,5 @@
+//REFERENCE ONLY - DELETE WHEN DONE
+
 let margin = {left: 50, right: 50, top: 50, bottom: 50}
 let plotWidth = 500;
 let plotHeight = 500;
