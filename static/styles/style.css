@@ -16,8 +16,9 @@ div#main{
     border: 0px solid black;
     text-align: center;
     font-size: large;
-    float:left;
-    max-width:initial;
+    /*float:left;
+    max-width:initial;*/
+    display:table;
 }
 
 #indicator-list {
@@ -63,3 +64,38 @@ div.tooltip p{
     margin:0px;
 }
 
+
+.ticks {
+  font-size: 10px;
+}
+
+.track,
+.track-inset,
+.track-overlay {
+  stroke-linecap: round;
+}
+
+.track {
+  stroke: #000;
+  stroke-opacity: 0.3;
+  stroke-width: 10px;
+}
+
+.track-inset {
+  stroke: #ddd;
+  stroke-width: 8px;
+}
+
+.track-overlay {
+  pointer-events: stroke;
+  stroke-width: 50px;
+  stroke: transparent;
+  cursor: crosshair;
+}
+
+.handle {
+  fill: #fff;
+  stroke: #000;
+  stroke-opacity: 0.5;
+  stroke-width: 1.25px;
+}
