@@ -57,6 +57,7 @@ function DateSlider(){
 
     let formatDateIntoMonth = d3.timeFormat("%m/%Y");
     let formatDate = d3.timeFormat("%d %b %Y");
+    let formatDateMEZ = d3.timeFormat("%Y-%m-%d");
 
     let svg = d3.select("#date_select")
 
@@ -111,6 +112,6 @@ function date_select(d) {
   label
     .attr("x", x(d))
     .text(formatDate(d));
-  end_date = d;
+  end_date = new Date(d3.timeParse(formatDateMEZ(d)));
 }
 }
