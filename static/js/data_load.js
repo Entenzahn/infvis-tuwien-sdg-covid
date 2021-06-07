@@ -14,7 +14,14 @@ function load_data(){
         covid_data = data
         console.log(data)
         console.log(d3.entries(covid_data))
+        d3.values(covid_data)
+            .forEach(function(d){
+                d.forEach(function(d2){
+                    d2.DateUNIX = new Date(d3.timeParse(d2.Date))
+                })
+            })
         CovidDropdown()
+        DateSlider()
     });
 
 
