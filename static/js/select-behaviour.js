@@ -5,8 +5,7 @@ function activateSDG(sdg_ind){
     //Map behaviour on SDG indicator change:
 
     //Bar chart behaviour:
-    createVerticalComp()
-
+    updateVerticalCompSDG();
     //Scatterplot:
 
     //Trend overview:
@@ -18,8 +17,18 @@ function activateCovid(cov_ind){
     //Map behaviour on Covid indicator change:
 
     //Bar chart behaviour:
-    createVerticalComp(sdg_ind, cov_ind)
+    updateVerticalCompCovid();
+    //Scatterplot:
 
+    //Trend overview:
+}
+
+function updateDate(cur_date){
+    //console.log(cur_date)
+    //Map behaviour on Covid indicator change:
+
+    //Bar chart behaviour:
+    updateVerticalCompDate();
     //Scatterplot:
 
     //Trend overview:

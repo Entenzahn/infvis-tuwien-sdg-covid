@@ -16,8 +16,8 @@ div#main{
     border: 0px solid black;
     text-align: center;
     font-size: large;
-    /*float:left;
-    max-width:initial;*/
+    float:left;
+    max-width:initial;
     display:table;
 }
 
@@ -98,4 +98,8 @@ div.tooltip p{
   stroke: #000;
   stroke-opacity: 0.5;
   stroke-width: 1.25px;
+}
+
+.vertComp_label{
+    dominant-baseline: hanging;
 }
