@@ -14,5 +14,10 @@ function initMap() {
             .attr("height", mapHeight)
         // Attaches the xml data to the div
             .node().append(data.documentElement)
+
+
+        d3.select("#svg_map").select("#svg2").selectAll("path").attr("fill", "white")
+        .attr('stroke', 'black')
+        .attr('stroke-width', 0.5);
         });
 }
