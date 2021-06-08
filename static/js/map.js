@@ -14,7 +14,5 @@ function initMap() {
             .attr("height", mapHeight)
         // Attaches the xml data to the div
             .node().append(data.documentElement)
-
-        //let map = d3.select("#svg2").attr("style", "color: red");
         });
 }
