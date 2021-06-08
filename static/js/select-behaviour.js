@@ -3,6 +3,7 @@ function activateSDG(sdg_ind){
     cov_ind = "test"
 
     //Map behaviour on SDG indicator change:
+    updateMap(sdg_ind);
 
     //Bar chart behaviour:
     updateVerticalCompSDG();
