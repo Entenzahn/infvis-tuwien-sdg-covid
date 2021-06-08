@@ -7,6 +7,7 @@ function build_dict(sdg_ind, cov_ind, end_date){
     let vert_dict = {};
     let min_val = null;
     let max_val = null;
+    let isPerPop = d3.select("#vertCompPerPop").property("checked")
 
     d3.entries(sdg_data[sdg_ind]).forEach(function(d){
             let state = d.key;
@@ -20,9 +21,17 @@ function build_dict(sdg_ind, cov_ind, end_date){
                 //No recording of day
                 vert_dict[state][cov_ind] = null
             } else {
-                vert_dict[state][cov_ind] = covid_data_days[0][cov_ind]
-                min_val = Math.min(min_val, covid_data_days[0][cov_ind])
-                max_val = Math.max(max_val, covid_data_days[0][cov_ind])
+                if(isPerPop){
+                    vert_dict[state][cov_ind] = (covid_data_days[0][cov_ind]/pop_data[state])*100000
+                    console.log("State:" + state + "| pop: "+ pop_data[state] +"Formula: " +(covid_data_days[0][cov_ind]/pop_data[state])*100000)
+                } else {
+                    vert_dict[state][cov_ind] = covid_data_days[0][cov_ind]
+                }
+                min_val = Math.min(min_val, vert_dict[state][cov_ind])
+                max_val = Math.max(max_val, vert_dict[state][cov_ind])
+
+                /*IDIOT:min_val = Math.min(min_val, covid_data_days[0][cov_ind])
+                max_val = Math.max(max_val, covid_data_days[0][cov_ind])*/
             }
         }
     )
@@ -30,14 +39,24 @@ function build_dict(sdg_ind, cov_ind, end_date){
 }
 
 function getMaxCovid(cov_ind){
+    let isPerPop = d3.select("#vertCompPerPop").property("checked")
     let max = 0;
-    d3.values(covid_data).forEach(function(d){
-        d.forEach(function(d){
-            if (d[cov_ind] > max){
-                max = d[cov_ind]
+    let val = 0;
+    d3.entries(covid_data).forEach(function(d){
+        let state = d.key;
+        d.value.forEach(function(d){
+            if(isPerPop){
+                val = (d[cov_ind]/pop_data[state])*100000
+            }
+            else{
+                val = d[cov_ind]
+            }
+            if (val > max){
+                max = val
             }
         })
     })
+    console.log(max)
     return max;
 }
 
@@ -126,6 +145,7 @@ function createVerticalComp(){
                     return x(val)
                 }
             })
+            .attr("value",function(d){return d.value[cov_ind]})
             .attr("height",y.bandwidth())
             .attr("fill","#96b3a2")
             .classed("vertComp_val",true)
@@ -151,10 +171,20 @@ function createVerticalComp(){
             .attr("width", y.bandwidth())
             .attr("height", y.bandwidth())
             .classed("vertComp_label",true)
+
+            d3.select(this)
+            .append("text")
+            .text(function(d){return d.value[cov_ind]})
+            .attr("x",-(y.bandwidth()*2))
+            .attr("y",function(d){return y(d.key)})
+            .attr("width", y.bandwidth())
+            .attr("height", y.bandwidth())
+            .classed("vertComp_number",true)
         })
 
         d3.select("#vertCompXRange").on("change",updateVerticalCompXRange)
         d3.select("#vertCompSort").on("change",updateVerticalCompSort)
+        d3.select("#vertCompPerPop").on("change",updateVerticalCompPerPop)
 }
 
 function updateVerticalCompSDG(){
@@ -191,6 +221,57 @@ function updateVerticalCompSDG(){
     }
 }
 
+function updateVerticalCompPerPop(){
+    let sdg_ind = sdg_dropdown.property("value")
+    let cov_ind = covid_dropdown.property("value")
+    let end_date = date_slider.property("value")
+    tmp = build_dict(sdg_ind, cov_ind, end_date)
+
+    vert_dict = tmp[0]
+    min_val = tmp[1]
+    max_val = tmp[2]
+
+    //Calculate and assign new total max value
+    isTotalRange = d3.select("#vertCompXRange").property("checked")
+    let total_max_val = getMaxCovid(cov_ind)
+    d3.select("#vertCompXRange").attr("total_max", total_max_val)
+    let x = getVertCompLinearScale(isTotalRange, total_max_val, max_val);
+
+    d3.entries(vert_dict).forEach(function(d){
+        let val = d.value[cov_ind]
+        if(val === null){
+            d3.select("#svg_state_compare g g[state="+d.key+"] rect.vertComp_val").transition()
+            .duration(1000)
+            .attr("width", 0)
+            .attr("value",0)
+            .attr("x",x(0))
+        } else {
+            d3.select("#svg_state_compare g g[state="+d.key+"] rect.vertComp_val").transition()
+            .duration(1000)
+            .attr("width", x(val))
+            .attr("value",val)
+            .attr("x",x(0))}
+    })
+
+    setTimeout(function(){
+        isCovidSort = d3.select("#vertCompSort").property("checked")
+        if(isCovidSort){
+            let vert_sort = sortVertDict(isCovidSort, vert_dict, cov_ind, sdg_ind)
+
+            let y = d3.scaleBand()
+                .range([0,vertCompare_height])
+                .domain(vert_sort.map(function(d){return d.key}))
+
+            vert_sort.forEach(function(d){
+                d3.selectAll("#svg_state_compare g g[state="+d.key+"] > *").transition()
+                .duration(1000)
+                .attr("y",y(d.key))
+
+            })
+        }
+    },1100)
+}
+
 function updateVerticalCompXRange(){
     let sdg_ind = sdg_dropdown.property("value")
     let cov_ind = covid_dropdown.property("value")
@@ -215,11 +296,13 @@ function updateVerticalCompXRange(){
             d3.select("#svg_state_compare g g[state="+d.key+"] rect.vertComp_val").transition()
             .duration(1000)
             .attr("width", 0)
+            .attr("value",0)
             .attr("x",x(0))
         } else {
             d3.select("#svg_state_compare g g[state="+d.key+"] rect.vertComp_val").transition()
             .duration(1000)
             .attr("width", x(val))
+            .attr("value",val)
             .attr("x",x(0))}
         })
 
@@ -247,11 +330,13 @@ function updateVerticalCompCovid(){
             d3.select("#svg_state_compare g g[state="+d.key+"] rect.vertComp_val").transition()
             .duration(1000)
             .attr("width", 0)
+            .attr("value",0)
             .attr("x",x(0))
         } else {
             d3.select("#svg_state_compare g g[state="+d.key+"] rect.vertComp_val").transition()
             .duration(1000)
             .attr("width", x(val))
+            .attr("value",val)
             .attr("x",x(0))}
     })
 
@@ -305,17 +390,19 @@ function updateVerticalCompDate(){
     let cov_ind = covid_dropdown.property("value")
     let end_date = date_slider.property("value")
 
-
     tmp = build_dict(sdg_ind, cov_ind, end_date)
     vert_dict = tmp[0]
     min_val = tmp[1]
     max_val = tmp[2]
 
+    //Check if total max is to be fetched
     isTotalRange = d3.select("#vertCompXRange").property("checked")
     let total_max_val = 0;
     if(isTotalRange){
         total_max_val = d3.select("#vertCompXRange").attr("total_max")
     }
+
+    //Generate linear scaling
     let x = getVertCompLinearScale(isTotalRange, total_max_val, max_val);
 
     d3.entries(vert_dict).forEach(function(d){
@@ -323,10 +410,12 @@ function updateVerticalCompDate(){
         if(val === null){
             d3.select("#svg_state_compare g g[state="+d.key+"] rect.vertComp_val")
             .attr("width", 0)
+            .attr("value",0)
             .attr("x",x(0))
         } else {
             d3.select("#svg_state_compare g g[state="+d.key+"] rect.vertComp_val")
             .attr("width", x(val))
+            .attr("value",val)
             .attr("x",x(0))}
         })
 

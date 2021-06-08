@@ -1,5 +1,6 @@
 var sdg_data;
-var covid_data
+var covid_data;
+var pop_data;
 
 function load_data(){
 
@@ -25,5 +26,9 @@ function load_data(){
         createVerticalComp()
     });
 
+
+    d3.json("static/data/pop.json").then(function(data){
+        pop_data = data
+    });
 
 }

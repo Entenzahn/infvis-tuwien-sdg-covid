@@ -96,3 +96,7 @@ dict_cov_grp = df_cov \
 # Store JSON from Covid dict
 with open("../static/data/covid.json", "w") as fp:
     json.dump(dict_cov_grp, fp, indent=2)
+
+df_pop = pd.read_excel("data/population_by_state.xlsx", engine="openpyxl")
+df_pop = df_pop.merge(df_statenames, left_on="State", right_on="Dataset name")
+df_pop.set_index(df_pop["ID name"])["Total Population(Projected 2020)"].to_json(r'../static/data/pop.json', indent=2)
