@@ -16,7 +16,7 @@ function initMap() {
             .node().append(data.documentElement) // Attaches the xml data to the div
 
         // Styles the SVG path
-        map = d3.select("#svg_map").select("#svg2").selectAll("path").attr("fill", "pink")
+        map = d3.select("#svg_map").select("#svg2").selectAll("path").attr("fill", "white")
             .attr('stroke', 'black')
             .attr('stroke-width', 0.5);
     });
@@ -28,12 +28,19 @@ function updateMap(sdg_activated){
     let sdg_activated_values = sdg_data[sdg_activated];
     max_val = d3.max(d3.entries(sdg_activated_values),function(d){return d.value})
     min_val = d3.min(d3.entries(sdg_activated_values),function(d){return d.value})
-    console.log(min_val);
+    //console.log(min_val, max_val);
 
     // Builds the color scale mapping the minimum and maximum values
     let color_scale = d3.scaleLinear()
                     .domain([min_val, max_val])
-                    .range(["white", "#FF0000"])
+                    .range(["#FEFB01", "#FF0000"])
 
-
+    d3.select("#svg_map").select("#svg2").selectAll("path")
+        .attr("fill", function(d){return color_scale(sdg_activated_values[this.id])})
+        .on("mouseover", function(d){d3.select(this)
+                .attr('stroke', 'green')
+                .attr('stroke-width', 2)})
+        .on('mouseout', function(d){d3.select(this)
+                .attr('stroke', 'black')
+                .attr('stroke-width', 0.5)});
 }
