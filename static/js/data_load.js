@@ -9,6 +9,7 @@ function load_data(){
         console.log(data)
         console.log(d3.entries(sdg_data))
         SDGDropdown();
+        initMap();
     });
 
     d3.json("static/data/covid.json").then(function(data){

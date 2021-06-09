@@ -16,9 +16,15 @@ function initMap() {
             .node().append(data.documentElement) // Attaches the xml data to the div
 
         // Styles the SVG path
-        map = d3.select("#svg_map").select("#svg2").selectAll("path").attr("fill", "white")
+        map = d3.select("#svg_map").select("#svg2").selectAll("path")
+            .attr("fill", "white")
+            // updateMap(sdg_ind))
             .attr('stroke', 'black')
             .attr('stroke-width', 0.5);
+
+        // Displays the first heatmap in the beginning
+        let sdg_ind = sdg_dropdown.property("value");
+        updateMap(sdg_ind);
     });
 }
 
@@ -34,9 +40,10 @@ function updateMap(sdg_activated){
     let color_scale = d3.scaleLinear()
                     .domain([min_val, max_val])
                     .range(["#FEFB01", "#FF0000"])
-
+    // Creates the heatmap
     d3.select("#svg_map").select("#svg2").selectAll("path")
         .attr("fill", function(d){return color_scale(sdg_activated_values[this.id])})
+        // Adds hovering events
         .on("mouseover", function(d){d3.select(this)
                 .attr('stroke', 'green')
                 .attr('stroke-width', 2)})
