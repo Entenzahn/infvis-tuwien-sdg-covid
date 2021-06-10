@@ -1,3 +1,5 @@
+//ToDo: deal with null values, consistent coloring, perhaps only use index values and display SDG numbers in tooltip
+
 let mapWidth = 1105;
 let mapHeight = 800;
 let map = null;
@@ -44,16 +46,23 @@ function updateMap(sdg_activated){
     // Creates the heatmap
     d3.select("#svg_map").select("#svg2").selectAll("path")
         .attr("fill", function(d){return color_scale(sdg_activated_values[this.id])})
+        .attr("state",function(){return this.id})
         // Adds hovering events
-        .on("mouseover", function(d){d3.select(this)
+        .on("mouseover",highlightState)
+        /*.on("mouseover", function(d){d3.select(this)
                 .attr('stroke', 'green')
-                .attr('stroke-width', 2)
-                /*.append("text")
+                .attr('stroke-width', 2);
+                updateLinePlot(this.id);
+                highlightState();
+                .append("text")
                 .text("Hello")
                 .attr("x", 500)
-                .attr("y", 500)*/
-                })
-        .on('mouseout', function(d){d3.select(this)
+                .attr("y", 500)
+                })*/
+        .on('mouseout', state_mouseout)
+        /*.on('mouseout', function(d){d3.select(this)
                 .attr('stroke', 'black')
-                .attr('stroke-width', 0.5)});
+                .attr('stroke-width', 0.5);
+                state_mouseout();})*/
+        .on('mousemove',move_tooltip);
 }

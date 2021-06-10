@@ -10,6 +10,7 @@ function activateSDG(sdg_ind){
     //Scatterplot:
 
     //Trend overview:
+    updateLinePlot("JK")
 }
 
 function activateCovid(cov_ind){
@@ -22,6 +23,7 @@ function activateCovid(cov_ind){
     //Scatterplot:
 
     //Trend overview:
+    updateLinePlot("JK")
 }
 
 function updateDate(cur_date){
@@ -33,4 +35,5 @@ function updateDate(cur_date){
     //Scatterplot:
 
     //Trend overview:
+    updateLinePlot("JK")
 }

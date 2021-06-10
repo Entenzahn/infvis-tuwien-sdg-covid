@@ -3,6 +3,8 @@ var vertCompare_width = 0;
 var vertCompare_margin = {};
 var vertCompare_height = 0;
 
+//ToDo: Show numbers, update x-axis, highlight null values, display data in tooltip, link with map
+
 function build_dict(sdg_ind, cov_ind, end_date){
     let vert_dict = {};
     let min_val = null;
@@ -23,7 +25,6 @@ function build_dict(sdg_ind, cov_ind, end_date){
             } else {
                 if(isPerPop){
                     vert_dict[state][cov_ind] = (covid_data_days[0][cov_ind]/pop_data[state])*100000
-                    console.log("State:" + state + "| pop: "+ pop_data[state] +"Formula: " +(covid_data_days[0][cov_ind]/pop_data[state])*100000)
                 } else {
                     vert_dict[state][cov_ind] = covid_data_days[0][cov_ind]
                 }
@@ -150,8 +151,6 @@ function createVerticalComp(){
             .attr("fill","#96b3a2")
             .classed("vertComp_val",true)
 
-            //To use after Alice is done with heatmap:
-            /*let fill = d3.select("#svg_map path[id="+d.key+"]").attr("fill")*/
 
             d3.select(this)
             .append("rect")
@@ -161,7 +160,6 @@ function createVerticalComp(){
             .attr("height", y.bandwidth())
             .text(d.key)
             .classed("vertComp_bg",true)
-            .attr("fill","red")//fill)
 
             d3.select(this)
             .append("text")
@@ -184,13 +182,13 @@ function createVerticalComp(){
 
         d3.select("#vertCompXRange").on("change",updateVerticalCompXRange)
         d3.select("#vertCompSort").on("change",updateVerticalCompSort)
-        d3.select("#vertCompPerPop").on("change",updateVerticalCompPerPop)
+        d3.select("#vertCompPerPop").on("change",function(){updateVerticalCompPerPop();updateLinePlot("JK")})
 }
 
 function updateVerticalCompSDG(){
     isCovidSort = d3.select("#vertCompSort").property("checked")
 
-    if(!isCovidSort){
+
         let sdg_ind = sdg_dropdown.property("value")
         let cov_ind = covid_dropdown.property("value")
         let end_date = date_slider.property("value")
@@ -207,18 +205,25 @@ function updateVerticalCompSDG(){
             .domain(vert_sort.map(function(d){return d.key}))
 
         vert_sort.forEach(function(d){
-            d3.selectAll("#svg_state_compare g g[state="+d.key+"] > *").transition()
-            .duration(1000)
-            .attr("y",y(d.key))
-
-        //To use after Alice is done with heatmap:
-        /*let fill = d3.select("#svg_map path[id="+d.key+"]").attr("fill")
+            let fill = d3.select("#svg_map path[id="+d.key+"]").attr("fill")
 
             d3.selectAll("#svg_state_compare g g[state="+d.key+"] > rect.vertComp_bg").transition()
-            .duration(1000)
-            .attr("fill",fill)*/
+            .duration(500)
+            .attr("fill",fill)
+
+            if(!isCovidSort){
+                setTimeout(function(){d3.selectAll("#svg_state_compare g g[state="+d.key+"] > *").transition()
+                .duration(1000)
+                .attr("y",y(d.key))
+                },600);
+            }
+
+
+        //To use after Alice is done with heatmap:
+
          })
-    }
+
+
 }
 
 function updateVerticalCompPerPop(){

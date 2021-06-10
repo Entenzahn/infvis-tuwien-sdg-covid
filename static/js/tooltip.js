@@ -1,4 +1,4 @@
-//REFERENCE ONLY - DELETE WHEN DONE
+//ToDo: everything
 
 function initTooltip(){
 

@@ -14,6 +14,9 @@
     <script src="static/js/select-behaviour.js"></script>
     <script src="static/js/vertical-compare.js"></script>
     <script src="static/js/scatterplot.js"></script>
+    <script src="static/js/linechart.js"></script>
+    <script src="static/js/tooltip.js"></script>
+    <script src="static/js/link.js"></script>
 
 </head>
 <body>
@@ -56,8 +59,11 @@
 
     <!-- Covid indicator development per state -->
     <div class="container">
-        <svg id="svg_state_trends"></svg>
+        <svg id="svg_state_trends" width="1000" height="1000"></svg>
     </div>
+</div>
+<div class="treatise">
+    Two ideas for analysis perhaps: predicting full vaccination saturation or something akin to chi-square computation to filter out the SDG factors on which covid performance (such as vaccination rate) is most dependent.
 </div>
 
 <script>

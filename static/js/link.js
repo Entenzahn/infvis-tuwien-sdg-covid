@@ -1,6 +1,32 @@
-//REFERENCE ONLY - DELETE WHEN DONE
+//ToDo: Highlight on horizontal bar chart, different tooltip display handling for map/bar chart
+function highlightState(){
+    let s = d3.select(this).attr("state")
+    d3.selectAll("#svg_map path[state=" + s + "]")
+        .attr('stroke', 'green')
+        .attr('stroke-width', 2)
+        .raise();
+    d3.selectAll("#svg_state_compare g[state=" + s + "] .vertComp_val")
+        .attr('stroke', 'green')
+        .attr('stroke-width', 2)
+        .raise();
+    console.log(d3.select(this))
+
+    tooltip.style("visibility","visible")
+    tooltip.select("h3").text(s);
+    //tooltip.select("p").text(ind + ": " + val);
+}
+function move_tooltip(){
+    tooltip.style("top",event.pageY + 10 + "px").style("left", event.pageX + 10 +"px")
+}
+function state_mouseout(){
+    let s = d3.select(this).attr("state");
+    d3.select("#svg_state_compare g[state=" + s + "] .vertComp_val").attr("stroke", "none");
+    d3.select("#svg_map path[state=" + s + "]").attr("stroke", "black").attr("stroke-width", 0.5);
+    d3.select(".tooltip").style("visibility","hidden")
+}
 
 //On hover for OECD country elements
+/*
 function highlightCountry(){
     let c = d3.select(this).attr("country");
 
@@ -78,9 +104,9 @@ function activateIndicator(){
         //Add text to top section
         d3.select("p#indicator").text(ind)
 
-        /*For choropleth map scaling I decided to scale from min to max value.
+        For choropleth map scaling I decided to scale from min to max value.
         I feel this is the most proper solution next to setting ranges for each indicator individually.
-        E.g. mapping everything to 0-max or 0-100 would deliver a flawed impression.*/
+        E.g. mapping everything to 0-max or 0-100 would deliver a flawed impression.
         indMax = d3.max(d3.entries(data[ind]),function(d){return d.value}) //d3.entries to transform our dict to array
         indMin = d3.min(d3.entries(data[ind]),function(d){return d.value})
 
@@ -99,4 +125,4 @@ function activateIndicator(){
                 .attr("fill-opacity", op(data[ind][d.key])) //extract our data and map to opacity
             })
     }
-}
+}*/

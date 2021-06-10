@@ -103,3 +103,22 @@ div.tooltip p{
 .vertComp_label{
     dominant-baseline: hanging;
 }
+
+div.tooltip {
+    background-color:#AADDDD;
+    padding: 5px;
+    border-radius: 5px;
+    opacity: 0.95;
+}
+
+div.tooltip h3{
+    font-size: 1em;
+    padding:0px;
+    margin:0px;
+}
+
+div.tooltip p{
+    font-size: 0.8em;
+    padding:0px;
+    margin:0px;
+}
