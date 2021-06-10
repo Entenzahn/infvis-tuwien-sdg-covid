@@ -9,7 +9,8 @@ function highlightState(){
         .attr('stroke', 'green')
         .attr('stroke-width', 2)
         .raise();
-    console.log(d3.select(this))
+
+    updateLinePlot(s);
 
     tooltip.style("visibility","visible")
     tooltip.select("h3").text(s);
