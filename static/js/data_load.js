@@ -25,6 +25,7 @@ function load_data(){
         CovidDropdown()
         DateSlider()
         createVerticalComp()
+        initScatterplot()
     });
 
 

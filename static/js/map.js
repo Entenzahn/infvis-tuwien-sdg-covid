@@ -40,13 +40,19 @@ function updateMap(sdg_activated){
     let color_scale = d3.scaleLinear()
                     .domain([min_val, max_val])
                     .range(["#FEFB01", "#FF0000"])
+
     // Creates the heatmap
     d3.select("#svg_map").select("#svg2").selectAll("path")
         .attr("fill", function(d){return color_scale(sdg_activated_values[this.id])})
         // Adds hovering events
         .on("mouseover", function(d){d3.select(this)
                 .attr('stroke', 'green')
-                .attr('stroke-width', 2)})
+                .attr('stroke-width', 2)
+                /*.append("text")
+                .text("Hello")
+                .attr("x", 500)
+                .attr("y", 500)*/
+                })
         .on('mouseout', function(d){d3.select(this)
                 .attr('stroke', 'black')
                 .attr('stroke-width', 0.5)});
