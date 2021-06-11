@@ -7,7 +7,9 @@ function activateSDG(sdg_ind){
 
     //Bar chart behaviour:
     updateVerticalCompSDG();
+
     //Scatterplot:
+    updateScatterplotSDG(sdg_ind);
 
     //Trend overview:
     updateLinePlot("JK")
@@ -20,7 +22,9 @@ function activateCovid(cov_ind){
 
     //Bar chart behaviour:
     updateVerticalCompCovid();
+
     //Scatterplot:
+    updateScatterplotCovid(cov_ind);
 
     //Trend overview:
     updateLinePlot("JK")
