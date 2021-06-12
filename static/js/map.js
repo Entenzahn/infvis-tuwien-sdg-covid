@@ -1,4 +1,4 @@
-//ToDo: deal with null values, consistent coloring, perhaps only use index values and display SDG numbers in tooltip
+//ToDo: deal with null values, consistent coloring, perhaps only use index values and display SDG numbers in tooltip, legend
 
 let mapWidth = 1105;
 let mapHeight = 800;

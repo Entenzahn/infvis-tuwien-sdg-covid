@@ -1,4 +1,4 @@
-//ToDo: add current date to vertical bar, add current date value to horizontal dashed line, display null values,
+//ToDo: add current date to vertical bar, add current date value to horizontal dashed line, display null values, legend, national mean
 
 function minDate(cov_ind, state){
     return d3.min(covid_data[state].filter(function(d){return d[cov_ind] !== null}).map(d => d.DateUNIX))
