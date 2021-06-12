@@ -215,7 +215,7 @@
     "LD":0.0,
     "PY":2.2
   },
-  "Percentage of population living below national poverty line.1":{
+  "Percentage of population living below national poverty line (Index)":{
     "AP":100.0,
     "AR":18.0,
     "AS":27.0,
@@ -251,7 +251,7 @@
     "LD":100.0,
     "PY":100.0
   },
-  "Percentage of households with any usual member covered by any health scheme or health insurance.1":{
+  "Percentage of households with any usual member covered by any health scheme or health insurance (Index)":{
     "AP":74,
     "AR":57,
     "AS":8,
@@ -287,7 +287,7 @@
     "LD":0,
     "PY":31
   },
-  "Persons provided employment as a percentage of persons who demanded employment under Mahatma Gandhi National Rural Employment Guarantee Act (MGNREGA).1":{
+  "Persons provided employment as a percentage of persons who demanded employment under Mahatma Gandhi National Rural Employment Guarantee Act (MGNREGA) (Index)":{
     "AP":65.0,
     "AR":73.0,
     "AS":48.0,
@@ -323,7 +323,7 @@
     "LD":64.0,
     "PY":37.0
   },
-  "Proportion of the population (out of total eligible population) receiving social protection benefit under Maternity Benefit.1":{
+  "Proportion of the population (out of total eligible population) receiving social protection benefit under Maternity Benefit (Index)":{
     "AP":16,
     "AR":19,
     "AS":66,
@@ -359,7 +359,7 @@
     "LD":16,
     "PY":20
   },
-  "Percentage of households living in katcha houses (rural + urban) .1":{
+  "Percentage of households living in katcha houses (rural + urban) (Index)":{
     "AP":89,
     "AR":0,
     "AS":92,
@@ -683,7 +683,7 @@
     "LD":null,
     "PY":1.0223133308
   },
-  "Ratio of rural households covered under public distribution system (PDS) to rural households where monthly income of highest earning member is less than Rs.5,000.1":{
+  "Ratio of rural households covered under public distribution system (PDS) to rural households where monthly income of highest earning member is less than Rs.5,000 (Index)":{
     "AP":34,
     "AR":54,
     "AS":76,
@@ -719,7 +719,7 @@
     "LD":41,
     "PY":46
   },
-  "Percentage of children under age 5 years who are stunted.1":{
+  "Percentage of children under age 5 years who are stunted (Index)":{
     "AP":27.0,
     "AR":35.0,
     "AS":24.0,
@@ -755,7 +755,7 @@
     "LD":null,
     "PY":null
   },
-  "Percentage of pregnant women aged 15-49 years who are anaemic.1":{
+  "Percentage of pregnant women aged 15-49 years who are anaemic (Index)":{
     "AP":35.0,
     "AR":80.0,
     "AS":54.0,
@@ -791,7 +791,7 @@
     "LD":73.0,
     "PY":98.0
   },
-  "Percentage of children aged 6-59 months who are anaemic (Hb<11.0 g\/dl) .1":{
+  "Percentage of children aged 6-59 months who are anaemic (Hb<11.0 g\/dl) (Index)":{
     "AP":35.0,
     "AR":64.0,
     "AS":50.0,
@@ -827,7 +827,7 @@
     "LD":null,
     "PY":null
   },
-  "Percentage children aged 0\u20134 years who are underweight .1":{
+  "Percentage children aged 0\u20134 years who are underweight (Index)":{
     "AP":18.0,
     "AR":64.0,
     "AS":32.0,
@@ -863,7 +863,7 @@
     "LD":null,
     "PY":null
   },
-  "Rice, wheat and coarse cereals produced annually per unit area (Kg\/Ha).1":{
+  "Rice, wheat and coarse cereals produced annually per unit area (Kg\/Ha) (Index)":{
     "AP":69.0,
     "AR":null,
     "AS":6.0,
@@ -899,7 +899,7 @@
     "LD":null,
     "PY":null
   },
-  "Gross Value Added in Agriculture per worker.1":{
+  "Gross Value Added in Agriculture per worker (Index)":{
     "AP":30.0,
     "AR":97.0,
     "AS":29.0,
@@ -1259,7 +1259,7 @@
     "LD":null,
     "PY":null
   },
-  "Maternal Mortality Ratio (MMR).1":{
+  "Maternal Mortality Ratio (MMR) (Index)":{
     "AP":97.0,
     "AR":null,
     "AS":0.0,
@@ -1295,7 +1295,7 @@
     "LD":null,
     "PY":null
   },
-  "Proportion of institutional deliveries.1":{
+  "Proportion of institutional deliveries (Index)":{
     "AP":47,
     "AR":12,
     "AS":24,
@@ -1331,7 +1331,7 @@
     "LD":37,
     "PY":100
   },
-  "Under 5 mortality rate per 1000 live births.1":{
+  "Under 5 mortality rate per 1000 live births (Index)":{
     "AP":70,
     "AR":85,
     "AS":41,
@@ -1367,7 +1367,7 @@
     "LD":90,
     "PY":100
   },
-  "Percentage of fully immunised children in the age group 0-5 years.1":{
+  "Percentage of fully immunised children in the age group 0-5 years (Index)":{
     "AP":70,
     "AR":33,
     "AS":38,
@@ -1403,7 +1403,7 @@
     "LD":66,
     "PY":24
   },
-  "Total case notification rate of Tuberculosis per 1 lakh population.1":{
+  "Total case notification rate of Tuberculosis per 1 lakh population (Index)":{
     "AP":65,
     "AR":57,
     "AS":75,
@@ -1439,7 +1439,7 @@
     "LD":94,
     "PY":52
   },
-  "HIV Incidence per 1000 uninfected population.1":{
+  "HIV Incidence per 1000 uninfected population (Index)":{
     "AP":90.0,
     "AR":96.0,
     "AS":97.0,
@@ -1475,7 +1475,7 @@
     "LD":null,
     "PY":92.0
   },
-  "Percentage of currently married women aged 15-49 years who use any modern method of family planning.1":{
+  "Percentage of currently married women aged 15-49 years who use any modern method of family planning (Index)":{
     "AP":65,
     "AR":16,
     "AS":28,
@@ -1511,7 +1511,7 @@
     "LD":3,
     "PY":56
   },
-  "Total physicians, nurses and midwives per 10000 population.1":{
+  "Total physicians, nurses and midwives per 10000 population (Index)":{
     "AP":100.0,
     "AR":53.0,
     "AS":50.0,
@@ -1979,7 +1979,7 @@
     "LD":100.0,
     "PY":95.17
   },
-  "Adjusted Net Enrolment Ratio in Elementary (Class 1-8) and Secondary (Class 9-10) education.1":{
+  "Adjusted Net Enrolment Ratio in Elementary (Class 1-8) and Secondary (Class 9-10) education (Index)":{
     "AP":33,
     "AR":62,
     "AS":65,
@@ -2015,7 +2015,7 @@
     "LD":67,
     "PY":62
   },
-  "Percentage of children in the age group 6-13 years who are out of school.1":{
+  "Percentage of children in the age group 6-13 years who are out of school (Index)":{
     "AP":85.0,
     "AR":52.0,
     "AS":53.0,
@@ -2051,7 +2051,7 @@
     "LD":41.0,
     "PY":97.0
   },
-  "Average annual drop out rate at secondary level.1":{
+  "Average annual drop out rate at secondary level (Index)":{
     "AP":81,
     "AR":33,
     "AS":41,
@@ -2087,7 +2087,7 @@
     "LD":100,
     "PY":91
   },
-  "Percentage of students in grade III, V, VIII and  X  achieving  at  least  a  minimum  proficiency  level  in terms of nationally defined learning outcomes to be attained by pupils at the end of each of above grades.1":{
+  "Percentage of students in grade III, V, VIII and  X  achieving  at  least  a  minimum  proficiency  level  in terms of nationally defined learning outcomes to be attained by pupils at the end of each of above grades (Index)":{
     "AP":48,
     "AR":9,
     "AS":48,
@@ -2123,7 +2123,7 @@
     "LD":16,
     "PY":31
   },
-  "Gross Enrolment Ratio in Higher education (18-23 years).1":{
+  "Gross Enrolment Ratio in Higher education (18-23 years) (Index)":{
     "AP":60,
     "AR":54,
     "AS":30,
@@ -2159,7 +2159,7 @@
     "LD":4,
     "PY":92
   },
-  "Gender Parity Index for Higher education (18-23 years).1":{
+  "Gender Parity Index for Higher education (18-23 years) (Index)":{
     "AP":10,
     "AR":95,
     "AS":76,
@@ -2195,7 +2195,7 @@
     "LD":100,
     "PY":100
   },
-  "Disabled children (5-19 Years) attending educational institution.1":{
+  "Disabled children (5-19 Years) attending educational institution (Index)":{
     "AP":31.0,
     "AR":31.0,
     "AS":12.0,
@@ -2231,7 +2231,7 @@
     "LD":45.0,
     "PY":39.0
   },
-  "Proportion of trained teacher, by education level (elementary, secondary).1":{
+  "Proportion of trained teacher, by education level (elementary, secondary) (Index)":{
     "AP":43,
     "AR":98,
     "AS":7,
@@ -2267,7 +2267,7 @@
     "LD":81,
     "PY":0
   },
-  "Percentage of schools with Pupil Teacher ratio less than\/equal to 30.1":{
+  "Percentage of schools with Pupil Teacher ratio less than\/equal to 30 (Index)":{
     "AP":82,
     "AR":86,
     "AS":68,
@@ -2627,7 +2627,7 @@
     "LD":0.0027496322,
     "PY":0.0054992645
   },
-  "Sex ratio at birth.1":{
+  "Sex ratio at birth (Index)":{
     "AP":69.0,
     "AR":null,
     "AS":68.0,
@@ -2663,7 +2663,7 @@
     "LD":null,
     "PY":null
   },
-  "Female to male ratio of average wage\/salary earnings received during the preceding calendar month among regular wage salaried\nemployees (rural+urban) .1":{
+  "Female to male ratio of average wage\/salary earnings received during the preceding calendar month among regular wage salaried\nemployees (rural+urban) (Index)":{
     "AP":36.0,
     "AR":44.0,
     "AS":48.0,
@@ -2699,7 +2699,7 @@
     "LD":null,
     "PY":62.0
   },
-  "Rate of Crimes Against Women Per 100,000\nFemale Population\n.1":{
+  "Rate of Crimes Against Women Per 100,000\nFemale Population (Index)":{
     "AP":52,
     "AR":63,
     "AS":0,
@@ -2735,7 +2735,7 @@
     "LD":90,
     "PY":87
   },
-  "Percentage of ever married women aged 15-49 years who have ever experienced spousal violence.1":{
+  "Percentage of ever married women aged 15-49 years who have ever experienced spousal violence (Index)":{
     "AP":17,
     "AR":36,
     "AS":51,
@@ -2771,7 +2771,7 @@
     "LD":84,
     "PY":26
   },
-  "Proportion of sexual crime against girl\nchildren to total crime against children during the calendar year\n.1":{
+  "Proportion of sexual crime against girl\nchildren to total crime against children during the calendar year (Index)":{
     "AP":68,
     "AR":72,
     "AS":78,
@@ -2807,7 +2807,7 @@
     "LD":0,
     "PY":28
   },
-  "Percentage of seats won by women in the general elections to state legislative assembly.1":{
+  "Percentage of seats won by women in the general elections to state legislative assembly (Index)":{
     "AP":16.0,
     "AR":7.0,
     "AS":13.0,
@@ -2843,7 +2843,7 @@
     "LD":null,
     "PY":27.0
   },
-  "Female labour force participation rate (LFPR).1":{
+  "Female labour force participation rate (LFPR) (Index)":{
     "AP":33,
     "AR":8,
     "AS":7,
@@ -2879,7 +2879,7 @@
     "LD":12,
     "PY":12
   },
-  "Operational land holdings - gender wise.1":{
+  "Operational land holdings - gender wise (Index)":{
     "AP":4,
     "AR":0,
     "AS":0,
@@ -3203,7 +3203,7 @@
     "LD":0.0,
     "PY":25.0
   },
-  "Percentage of households having improved source of drinking water.1":{
+  "Percentage of households having improved source of drinking water (Index)":{
     "AP":94,
     "AR":97,
     "AS":80,
@@ -3239,7 +3239,7 @@
     "LD":44,
     "PY":99
   },
-  "Percentage of rural households with individual household toilets.1":{
+  "Percentage of rural households with individual household toilets (Index)":{
     "AP":100,
     "AR":100,
     "AS":100,
@@ -3275,7 +3275,7 @@
     "LD":100,
     "PY":100
   },
-  "Percentage of urban households with individual household toilets.1":{
+  "Percentage of urban households with individual household toilets (Index)":{
     "AP":100.0,
     "AR":79.0,
     "AS":100.0,
@@ -3311,7 +3311,7 @@
     "LD":null,
     "PY":59.0
   },
-  "Percentage of districts verified to be ODF.1":{
+  "Percentage of districts verified to be ODF (Index)":{
     "AP":100.0,
     "AR":100.0,
     "AS":85.0,
@@ -3347,7 +3347,7 @@
     "LD":0.0,
     "PY":100.0
   },
-  "Proportion of schools with separate toilet facility for girls.1":{
+  "Proportion of schools with separate toilet facility for girls (Index)":{
     "AP":99,
     "AR":76,
     "AS":0,
@@ -3383,7 +3383,7 @@
     "LD":100,
     "PY":100
   },
-  "Percentage of industries (17 category of highly polluting industries\/ grossly polluting\/ red category of industries complying with waste water treatment as per CPCB norms..1":{
+  "Percentage of industries (17 category of highly polluting industries\/ grossly polluting\/ red category of industries complying with waste water treatment as per CPCB norms. (Index)":{
     "AP":90.0,
     "AR":61.0,
     "AS":80.0,
@@ -3419,7 +3419,7 @@
     "LD":null,
     "PY":75.0
   },
-  "Percentage of blocks over-exploited.1":{
+  "Percentage of blocks over-exploited (Index)":{
     "AP":92,
     "AR":100,
     "AS":100,
@@ -3563,7 +3563,7 @@
     "LD":61.7,
     "PY":96.5
   },
-  "Percentage of households electrified.1":{
+  "Percentage of households electrified (Index)":{
     "AP":100.0,
     "AR":100.0,
     "AS":100.0,
@@ -3599,7 +3599,7 @@
     "LD":null,
     "PY":100.0
   },
-  "Percentage of households using clean cooking fuel (LPG) .1":{
+  "Percentage of households using clean cooking fuel (LPG) (Index)":{
     "AP":72,
     "AR":48,
     "AS":39,
@@ -3923,7 +3923,7 @@
     "LD":0.5437262357,
     "PY":0.5638108733
   },
-  "Annual growth rate of Net Domestic Product (NDP) per capita .1":{
+  "Annual growth rate of Net Domestic Product (NDP) per capita (Index)":{
     "AP":100.0,
     "AR":56.0,
     "AS":77.0,
@@ -3959,7 +3959,7 @@
     "LD":null,
     "PY":96.0
   },
-  "Ease of doing business score (EODB).1":{
+  "Ease of doing business score (EODB) (Index)":{
     "AP":98,
     "AR":0,
     "AS":85,
@@ -3995,7 +3995,7 @@
     "LD":0,
     "PY":16
   },
-  "Unemployment rate (%).1":{
+  "Unemployment rate (%) (Index)":{
     "AP":79,
     "AR":73,
     "AS":63,
@@ -4031,7 +4031,7 @@
     "LD":0,
     "PY":52
   },
-  "Labour Force Participation Rate (%).1":{
+  "Labour Force Participation Rate (%) (Index)":{
     "AP":35,
     "AR":11,
     "AS":15,
@@ -4067,7 +4067,7 @@
     "LD":9,
     "PY":6
   },
-  "Number of banking outlets per 1,00,000 population.1":{
+  "Number of banking outlets per 1,00,000 population (Index)":{
     "AP":31,
     "AR":27,
     "AS":9,
@@ -4103,7 +4103,7 @@
     "LD":46,
     "PY":36
   },
-  "Percentage of households with a bank account.1":{
+  "Percentage of households with a bank account (Index)":{
     "AP":100,
     "AR":100,
     "AS":86,
@@ -4139,7 +4139,7 @@
     "LD":100,
     "PY":100
   },
-  "Proportion of women account holders under PMJDY .1":{
+  "Proportion of women account holders under PMJDY (Index)":{
     "AP":100,
     "AR":100,
     "AS":100,
@@ -4355,7 +4355,7 @@
     "LD":null,
     "PY":null
   },
-  "Percentage of targeted habitations connected by all-weather roads under Pradhan Mantri Gram Sadak Yojana.1":{
+  "Percentage of targeted habitations connected by all-weather roads under Pradhan Mantri Gram Sadak Yojana (Index)":{
     "AP":73.0,
     "AR":100.0,
     "AS":59.0,
@@ -4391,7 +4391,7 @@
     "LD":null,
     "PY":null
   },
-  "Manufacturing employment as a proportion of total employment.1":{
+  "Manufacturing employment as a proportion of total employment (Index)":{
     "AP":45,
     "AR":1,
     "AS":28,
@@ -4427,7 +4427,7 @@
     "LD":0,
     "PY":86
   },
-  "Number of mobile connections per 100 persons in rural and urban area (Mobile Tele density).1":{
+  "Number of mobile connections per 100 persons in rural and urban area (Mobile Tele density) (Index)":{
     "AP":96.0,
     "AR":4.0,
     "AS":68.0,
@@ -4463,7 +4463,7 @@
     "LD":null,
     "PY":null
   },
-  "Number of Internet subscribers per 100 population.1":{
+  "Number of Internet subscribers per 100 population (Index)":{
     "AP":50.0,
     "AR":19.0,
     "AS":28.0,
@@ -4859,7 +4859,7 @@
     "LD":null,
     "PY":null
   },
-  "Growth rates of household expenditure  per capita among the bottom 40 per cent of the population in rural India.1":{
+  "Growth rates of household expenditure  per capita among the bottom 40 per cent of the population in rural India (Index)":{
     "AP":100,
     "AR":33,
     "AS":72,
@@ -4895,7 +4895,7 @@
     "LD":100,
     "PY":92
   },
-  "Growth rates of household expenditure  per capita among the bottom 40 per cent of the population in urban India.1":{
+  "Growth rates of household expenditure  per capita among the bottom 40 per cent of the population in urban India (Index)":{
     "AP":100,
     "AR":61,
     "AS":92,
@@ -4931,7 +4931,7 @@
     "LD":87,
     "PY":100
   },
-  "Gini Coefficient of Household Expenditure in Rural India.1":{
+  "Gini Coefficient of Household Expenditure in Rural India (Index)":{
     "AP":33.0,
     "AR":5.0,
     "AS":39.0,
@@ -4967,7 +4967,7 @@
     "LD":null,
     "PY":null
   },
-  "Gini Coefficient of Household Expenditure in Urban India.1":{
+  "Gini Coefficient of Household Expenditure in Urban India (Index)":{
     "AP":27.0,
     "AR":12.0,
     "AS":21.0,
@@ -5003,7 +5003,7 @@
     "LD":null,
     "PY":null
   },
-  "Proportion of seats held by women in Panchayati Raj Institutions.1":{
+  "Proportion of seats held by women in Panchayati Raj Institutions (Index)":{
     "AP":100.0,
     "AR":20.0,
     "AS":100.0,
@@ -5039,7 +5039,7 @@
     "LD":null,
     "PY":null
   },
-  "Ratio of transgender labour force participation rate to male labour force participation rate.1":{
+  "Ratio of transgender labour force participation rate to male labour force participation rate (Index)":{
     "AP":99.0,
     "AR":100.0,
     "AS":57.0,
@@ -5075,7 +5075,7 @@
     "LD":null,
     "PY":null
   },
-  "Percentage of Scheduled Caste Sub Plan fund utilised.1":{
+  "Percentage of Scheduled Caste Sub Plan fund utilised (Index)":{
     "AP":39.0,
     "AR":null,
     "AS":73.0,
@@ -5111,7 +5111,7 @@
     "LD":null,
     "PY":83.0
   },
-  "Percentage of Tribal Sub Plan fund utilised.1":{
+  "Percentage of Tribal Sub Plan fund utilised (Index)":{
     "AP":43.0,
     "AR":null,
     "AS":83.0,
@@ -5363,7 +5363,7 @@
     "LD":0.0,
     "PY":0.5036764706
   },
-  "Houses completed under Pradhan Mantri Awas Yojana (PMAY) as a percentage of net demand assessment for houses.1":{
+  "Houses completed under Pradhan Mantri Awas Yojana (PMAY) as a percentage of net demand assessment for houses (Index)":{
     "AP":22.0,
     "AR":24.0,
     "AS":16.0,
@@ -5399,7 +5399,7 @@
     "LD":null,
     "PY":19.0
   },
-  "Percentage of urban households living in slums.1":{
+  "Percentage of urban households living in slums (Index)":{
     "AP":0.0,
     "AR":91.0,
     "AS":95.0,
@@ -5435,7 +5435,7 @@
     "LD":null,
     "PY":4.0
   },
-  "Percentage of wards with 100% door to door waste collection.1":{
+  "Percentage of wards with 100% door to door waste collection (Index)":{
     "AP":100.0,
     "AR":100.0,
     "AS":50.0,
@@ -5471,7 +5471,7 @@
     "LD":null,
     "PY":100.0
   },
-  "Percentage of waste processed.1":{
+  "Percentage of waste processed (Index)":{
     "AP":48.0,
     "AR":0.0,
     "AS":41.0,
@@ -5507,7 +5507,7 @@
     "LD":null,
     "PY":90.0
   },
-  "Installed sewage treatment capacity as a proportion of sewage generated in urban areas.1":{
+  "Installed sewage treatment capacity as a proportion of sewage generated in urban areas (Index)":{
     "AP":9,
     "AR":0,
     "AS":0,
@@ -5831,7 +5831,7 @@
     "LD":null,
     "PY":31.9672131148
   },
-  "Percentage ground water withdrawal against availability .1":{
+  "Percentage ground water withdrawal against availability (Index)":{
     "AP":100,
     "AR":100,
     "AS":100,
@@ -5867,7 +5867,7 @@
     "LD":100,
     "PY":95
   },
-  "Percentage use of nitrogen fertilizer out of total N,P,K, (Nitrogen, Phosphorous, Potassium).1":{
+  "Percentage use of nitrogen fertilizer out of total N,P,K, (Nitrogen, Phosphorous, Potassium) (Index)":{
     "AP":97,
     "AR":100,
     "AS":76,
@@ -5903,7 +5903,7 @@
     "LD":100,
     "PY":60
   },
-  "Per capita hazard waste generated.1":{
+  "Per capita hazard waste generated (Index)":{
     "AP":88.0,
     "AR":null,
     "AS":98.0,
@@ -5939,7 +5939,7 @@
     "LD":100.0,
     "PY":null
   },
-  "Ratio of processed quantity of hazard waste sent to recycle to hazard waste generated .1":{
+  "Ratio of processed quantity of hazard waste sent to recycle to hazard waste generated (Index)":{
     "AP":7.0,
     "AR":null,
     "AS":null,
@@ -5975,7 +5975,7 @@
     "LD":0.0,
     "PY":15.0
   },
-  "Municipal Solid Waste (MSW) treated against MSW generated .1":{
+  "Municipal Solid Waste (MSW) treated against MSW generated (Index)":{
     "AP":8.0,
     "AR":0.0,
     "AS":0.0,
@@ -6011,7 +6011,7 @@
     "LD":null,
     "PY":0.0
   },
-  "Installed Capacity of Grid Interactive Bio Power per 100,000 population .1":{
+  "Installed Capacity of Grid Interactive Bio Power per 100,000 population (Index)":{
     "AP":44.0,
     "AR":null,
     "AS":null,
@@ -6047,7 +6047,7 @@
     "LD":null,
     "PY":null
   },
-  "Percentage of wards with 100% source segregation.1":{
+  "Percentage of wards with 100% source segregation (Index)":{
     "AP":90.0,
     "AR":7.0,
     "AS":25.0,
@@ -6263,7 +6263,7 @@
     "LD":100.0,
     "PY":100.0
   },
-  "Number of human lives lost per 10,000,000 population due to extreme weather events.1":{
+  "Number of human lives lost per 10,000,000 population due to extreme weather events (Index)":{
     "AP":98.0,
     "AR":0.0,
     "AS":87.0,
@@ -6299,7 +6299,7 @@
     "LD":null,
     "PY":null
   },
-  "Renewable share of installed generating capacity .1":{
+  "Renewable share of installed generating capacity (Index)":{
     "AP":99,
     "AR":100,
     "AS":76,
@@ -6335,7 +6335,7 @@
     "LD":100,
     "PY":0
   },
-  "Co2 saved from LED bulbs per 1000 population.1":{
+  "Co2 saved from LED bulbs per 1000 population (Index)":{
     "AP":24,
     "AR":21,
     "AS":10,
@@ -6371,7 +6371,7 @@
     "LD":100,
     "PY":18
   },
-  "Installed capacity of solar power as proportion of installed grid interactive renewable power.1":{
+  "Installed capacity of solar power as proportion of installed grid interactive renewable power (Index)":{
     "AP":60,
     "AR":4,
     "AS":14,
@@ -6659,7 +6659,7 @@
     "LD":null,
     "PY":null
   },
-  "Combined Indicator (15.1+15.2).1":{
+  "Combined Indicator (15.1+15.2) (Index)":{
     "AP":49,
     "AR":100,
     "AS":100,
@@ -6695,7 +6695,7 @@
     "LD":100,
     "PY":37
   },
-  "Decadal change in extent of water bodies within forests from 2005 to 2015 (%).1":{
+  "Decadal change in extent of water bodies within forests from 2005 to 2015 (%) (Index)":{
     "AP":100.0,
     "AR":0.0,
     "AS":100.0,
@@ -6731,7 +6731,7 @@
     "LD":null,
     "PY":null
   },
-  "Percentage increase in area of desertification .1":{
+  "Percentage increase in area of desertification (Index)":{
     "AP":99.0,
     "AR":87.0,
     "AS":74.0,
@@ -6767,7 +6767,7 @@
     "LD":null,
     "PY":null
   },
-  "Number of wildlife crime cases detected and reported anually.1":{
+  "Number of wildlife crime cases detected and reported anually (Index)":{
     "AP":96.0,
     "AR":99.0,
     "AS":88.0,
@@ -7127,7 +7127,7 @@
     "LD":96.6219586543,
     "PY":92.0363034836
   },
-  "Reported murders per 1 lakh population.1":{
+  "Reported murders per 1 lakh population (Index)":{
     "AP":81,
     "AR":0,
     "AS":51,
@@ -7163,7 +7163,7 @@
     "LD":100,
     "PY":93
   },
-  "Proportion of population subjected to physical, psychological or sexual violence in the previous 12 months.1":{
+  "Proportion of population subjected to physical, psychological or sexual violence in the previous 12 months (Index)":{
     "AP":80,
     "AR":39,
     "AS":0,
@@ -7199,7 +7199,7 @@
     "LD":87,
     "PY":85
   },
-  "Reported cognizable crimes against children per 1 lakh population.1":{
+  "Reported cognizable crimes against children per 1 lakh population (Index)":{
     "AP":89,
     "AR":79,
     "AS":70,
@@ -7235,7 +7235,7 @@
     "LD":84,
     "PY":88
   },
-  "Number of victims of human trafficking per 100,000 population, by sex, age and form of exploitation.1":{
+  "Number of victims of human trafficking per 100,000 population, by sex, age and form of exploitation (Index)":{
     "AP":89,
     "AR":100,
     "AS":83,
@@ -7271,7 +7271,7 @@
     "LD":100,
     "PY":98
   },
-  "Estimated number of courts per 10 Lakh persons.1":{
+  "Estimated number of courts per 10 Lakh persons (Index)":{
     "AP":92.0,
     "AR":null,
     "AS":9.0,
@@ -7307,7 +7307,7 @@
     "LD":null,
     "PY":null
   },
-  "Cases Reported under Prevention of Corruption Act & Related Sections of IPC per 100,000 population .1":{
+  "Cases Reported under Prevention of Corruption Act & Related Sections of IPC per 100,000 population (Index)":{
     "AP":79,
     "AR":37,
     "AS":100,
@@ -7343,7 +7343,7 @@
     "LD":100,
     "PY":100
   },
-  "Percentage of births registered.1":{
+  "Percentage of births registered (Index)":{
     "AP":91.0,
     "AR":100.0,
     "AS":100.0,
@@ -7379,7 +7379,7 @@
     "LD":9.0,
     "PY":100.0
   },
-  "Percentage of population covered under Aadhaar.1":{
+  "Percentage of population covered under Aadhaar (Index)":{
     "AP":89,
     "AR":75,
     "AS":0,

@@ -1,6 +1,7 @@
 import pandas as pd
 import json
 import numpy as np
+import re
 
 # Notes:
 # Dadra and Nagar Haveli and Daman and Diu in Covid data set exist as separate Dadra and Nagar Haveli, Daman and Diu in SDG dataset.
@@ -49,6 +50,10 @@ df_sdg = df_sdg.replace(r'Null', np.nan ,regex=True)
 # Join SDG dataframe with map IDs
 df_sdg = pd.merge(df_sdg, df_statenames, how="inner", left_on="States/UTs", right_on="Dataset name").drop(columns=["Complete name"])
 # Store the SDG info as JSON file, using map ID to index the indicator dictionary of the state
+
+for c in df_sdg.columns:
+    ct = re.sub(r'\s?\.1$', ' (Index)', c)
+    df_sdg = df_sdg.rename(columns={c: ct})
 
 df_sdg.set_index(df_sdg["ID name"]).to_json(r'../static/data/sdg.json', indent=2)
 

@@ -6,7 +6,6 @@ var tooltip;
 function load_data(){
 
     d3.json("static/data/sdg.json").then(function(data){
-        tooltip = initTooltip()
         sdg_data = data
         console.log(data)
         console.log(d3.entries(sdg_data))
@@ -28,7 +27,8 @@ function load_data(){
             createVerticalComp()
             initScatterplot()
             updateVerticalCompSDG();
-            generateLineChart(d3.select("#svg_state_trends"),"JK",900,200)
+            tooltip = initTooltip()
+            generateLineChart(tooltip.select("#tooltip_trend"),"JK",500,150)
         });
 
     });

@@ -114,10 +114,16 @@ div.tooltip {
 div.tooltip h3{
     font-size: 1em;
     padding:0px;
-    margin:0px;
+    margin:5px;
 }
 
 div.tooltip p{
+    font-size: 0.8em;
+    padding:0px;
+    margin:5px;
+}
+
+.covLineChart text{
     font-size: 0.8em;
     padding:0px;
     margin:0px;

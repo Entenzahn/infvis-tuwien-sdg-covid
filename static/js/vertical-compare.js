@@ -3,7 +3,7 @@ var vertCompare_width = 0;
 var vertCompare_margin = {};
 var vertCompare_height = 0;
 
-//ToDo: Show numbers, update x-axis, highlight null values, display data in tooltip, link with map
+//ToDo: Show numbers, update x-axis, highlight null values
 
 function build_dict(sdg_ind, cov_ind, end_date){
     let vert_dict = {};
@@ -97,7 +97,7 @@ function createVerticalComp(){
     console.log(max_val)
 
     vertCompare_margin = {top: 20, right: 30, bottom: 80, left: 90};
-    vertCompare_width = 360 - vertCompare_margin.left - vertCompare_margin.right;
+    vertCompare_width = 300 - vertCompare_margin.left - vertCompare_margin.right;
     vertCompare_height = 800 - vertCompare_margin.top - vertCompare_margin.bottom;
 
     isTotalRange = d3.select("#vertCompXRange").property("checked")
@@ -135,6 +135,7 @@ function createVerticalComp(){
         .attr("state", function(d){return d.key})
         .each(function(d){
             d3.select(this)
+            .classed("vertComp_bar",true)
             .append("rect")
             .attr("x",x(0))
             .attr("y",function(d){return y(d.key)})
@@ -178,7 +179,19 @@ function createVerticalComp(){
             .attr("width", y.bandwidth())
             .attr("height", y.bandwidth())
             .classed("vertComp_number",true)
-        })
+
+            d3.select(this)
+            .append("rect")
+            .attr("x",x(0))
+            .attr("y",function(d){return y(d.key)})
+            .attr("width", vertCompare_width)
+            .attr("height", y.bandwidth())
+            .classed("vertComp_overlay",true)
+            .raise()
+            .attr("opacity","0")
+        }).on("mouseover",highlightState)
+        .on('mouseout', state_mouseout)
+        .on('mousemove',move_tooltip);
 
         d3.select("#vertCompXRange").on("change",updateVerticalCompXRange)
         d3.select("#vertCompSort").on("change",updateVerticalCompSort)

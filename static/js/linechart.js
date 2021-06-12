@@ -1,3 +1,5 @@
+//ToDo: add current date to vertical bar, add current date value to horizontal dashed line, display null values,
+
 function minDate(cov_ind, state){
     return d3.min(covid_data[state].filter(function(d){return d[cov_ind] !== null}).map(d => d.DateUNIX))
 }
@@ -39,23 +41,23 @@ function generateLineChart(element, id, w, h){
     data = covid_data[id].filter(function(d){return d.DateUNIX <= max_date && d.DateUNIX >= min_date})
 
     //
-    let max_data = 0
+    let max_data = maxData(cov_ind,id)
     if (isPerPop){
-        max_data = 100000
+        max_data = (max_data/pop_data[id])*100000*1.1
     } else {
-        max_data = maxData(cov_ind,id)*1.1 //getMaxData
+        max_data = max_data*1.1 //getMaxData
     }
 
 
     let x = d3.scaleTime()
         .domain([min_date, max_date])
         .range([0,width])
-    svg.append("g").classed("axis",true).attr("transform","translate(0,"+height+")").call(d3.axisBottom(x))
+    svg.append("g").classed("axis",true).attr("transform","translate(0,"+height+")").call(d3.axisBottom(x).ticks(10))
 
     let y = d3.scaleLinear()
         .domain([0,max_data])
         .range([height, 0])
-    svg.append("g").classed("axis",true).call(d3.axisLeft(y))
+    svg.append("g").classed("axis",true).call(d3.axisLeft(y).ticks(10))
 
     svg.append("path")
         .classed("trend-plot",true)
@@ -97,11 +99,11 @@ function updateLinePlot(id){
     data = covid_data[id].filter(function(d){return d.DateUNIX <= max_date && d.DateUNIX >= min_date})
 
     //Set data boundaries
-    let max_data = 0
+    let max_data = maxData(cov_ind,id)
     if (isPerPop){
-        max_data = 100000
+        max_data = (max_data/pop_data[id])*100000*1.1
     } else {
-        max_data = maxData(cov_ind,id)*1.1 //getMaxData
+        max_data = max_data*1.1 //getMaxData
     }
 
     let margin = {top: 10, right: 30, bottom: 30, left: 50},
@@ -132,8 +134,8 @@ function updateLinePlot(id){
     } else if (stateHasChanged || covIndHasChanged || perPopHasChanged){
 
         svg.selectAll(".axis").remove()
-        svg.append("g").classed("axis",true).attr("transform","translate(0,"+height+")").call(d3.axisBottom(x))
-        svg.append("g").classed("axis",true).call(d3.axisLeft(y))
+        svg.append("g").classed("axis",true).attr("transform","translate(0,"+height+")").call(d3.axisBottom(x).ticks(10))
+        svg.append("g").classed("axis",true).call(d3.axisLeft(y).ticks(10))
 
         svg.select(".trend-plot").datum(data).transition().duration(1000)
         .attr("d", d3.area()

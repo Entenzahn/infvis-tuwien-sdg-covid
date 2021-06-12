@@ -39,30 +39,27 @@ function updateMap(sdg_activated){
     //console.log(min_val, max_val);
 
     // Builds the color scale mapping the minimum and maximum values
-    let color_scale = d3.scaleLinear()
+    /*let color_scale = d3.scaleLinear()
                     .domain([min_val, max_val])
-                    .range(["#FEFB01", "#FF0000"])
+                    .range(["#FEFB01", "#FF0000"])*/
+
+    let color_scale = d3.scaleLinear()
+                    .domain([0, 100])
+                    .range(["#FF0000","#FEFB01"])
 
     // Creates the heatmap
     d3.select("#svg_map").select("#svg2").selectAll("path")
-        .attr("fill", function(d){return color_scale(sdg_activated_values[this.id])})
+        .attr("fill", function(d){
+                val = sdg_activated_values[this.id]
+                if(val == null){
+                    return "grey";
+                } else {
+                    return color_scale(sdg_activated_values[this.id])
+                }
+            })
         .attr("state",function(){return this.id})
         // Adds hovering events
         .on("mouseover",highlightState)
-        /*.on("mouseover", function(d){d3.select(this)
-                .attr('stroke', 'green')
-                .attr('stroke-width', 2);
-                updateLinePlot(this.id);
-                highlightState();
-                .append("text")
-                .text("Hello")
-                .attr("x", 500)
-                .attr("y", 500)
-                })*/
         .on('mouseout', state_mouseout)
-        /*.on('mouseout', function(d){d3.select(this)
-                .attr('stroke', 'black')
-                .attr('stroke-width', 0.5);
-                state_mouseout();})*/
         .on('mousemove',move_tooltip);
 }

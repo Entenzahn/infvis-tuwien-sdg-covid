@@ -1,4 +1,3 @@
-//ToDo: Highlight on horizontal bar chart, different tooltip display handling for map/bar chart
 function highlightState(){
     let s = d3.select(this).attr("state")
     d3.selectAll("#svg_map path[state=" + s + "]")
@@ -11,13 +10,19 @@ function highlightState(){
         .raise();
 
     updateLinePlot(s);
+    updateTooltip(s);
 
     tooltip.style("visibility","visible")
-    tooltip.select("h3").text(s);
+    tooltip.select("h3").text(sdg_data["States/UTs"][s]);
     //tooltip.select("p").text(ind + ": " + val);
 }
 function move_tooltip(){
-    tooltip.style("top",event.pageY + 10 + "px").style("left", event.pageX + 10 +"px")
+    let tooltip_width = d3.select(".tooltip").node().getBoundingClientRect().width
+    if(d3.select(this).classed("vertComp_bar")){
+        tooltip.style("top",event.pageY + 10 + "px").style("left", event.pageX - tooltip_width - 10 +"px")
+    } else {
+        tooltip.style("top",event.pageY + 10 + "px").style("left", event.pageX + 10 +"px")
+    }
 }
 function state_mouseout(){
     let s = d3.select(this).attr("state");
