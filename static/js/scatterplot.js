@@ -15,7 +15,7 @@ function initScatterplot() {
       .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    console.log(sdg_ind, cov_ind);
+    //console.log(sdg_ind, cov_ind);
 
     // Add X axis
     min_ind = 0,
@@ -40,7 +40,8 @@ function initScatterplot() {
     .classed("axis_y",true)
     .call(d3.axisLeft(y));
 
-    svg.append('g')
+    // Adds dummy dots
+    svg.append("g")
         .selectAll("dot")
         .data(d3.keys(covid_data))
         .enter()
@@ -49,6 +50,8 @@ function initScatterplot() {
           .attr("cy", 0.55)
           .attr("r", 3)
           .style("fill", "#FF0000")
+
+    //console.log(d3.keys(covid_data));
 
     updateScatterplotSDG(sdg_ind);
     updateScatterplotCovid(cov_ind);
@@ -61,7 +64,8 @@ function updateScatterplotSDG(sdg_activated){
     min_val = d3.min(d3.entries(sdg_activated_values),function(d){return d.value});
     max_val = d3.max(d3.entries(sdg_activated_values),function(d){return d.value});
 
-    console.log("SDG :", min_val, max_val);
+    //console.log("SDG :", min_val, max_val);
+    //console.log(sdg_activated_values);
 
     let svg = d3.select("#svg_scatterplot g");
 
@@ -77,6 +81,13 @@ function updateScatterplotSDG(sdg_activated){
         .classed("axis_x",true)
         .attr("transform", "translate(0," + scatterplotHeight + ")")
         .call(d3.axisBottom(x));
+
+    svg.selectAll("circle")
+    .data(d3.values(sdg_activated_values))
+    .attr("cx", function(d){
+    console.log(d);
+    // Why not the same scale/px ?
+    return d*10});
 }
 
 function updateScatterplotCovid(covid_activated){
@@ -85,7 +96,8 @@ function updateScatterplotCovid(covid_activated){
     min_covid = 0;
     max_covid = getMaxCovid(covid_activated);
 
-    console.log("Covid :", min_covid, max_covid);
+    //console.log("Covid :", min_covid, max_covid);
+    console.log(covid_data);
 
     let svg = d3.select("#svg_scatterplot g");
 
@@ -100,4 +112,11 @@ function updateScatterplotCovid(covid_activated){
     svg.append("g")
         .classed("axis_y",true)
         .call(d3.axisLeft(y));
+
+    /*d3.entries(covid_data).forEach(function(d){
+        let state = d.key;
+        d.value.forEach(function(d){
+                val = d[cov_ind]
+                console.log(val)})})*/
+
 }
