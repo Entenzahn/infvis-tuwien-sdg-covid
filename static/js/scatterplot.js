@@ -56,6 +56,9 @@ function initScatterplot() {
           .attr("cy", y(0))
           .attr("r", 3)
           .style("fill", "#FF0000")
+          .on("mouseover",highlightState)
+          .on('mouseout', state_mouseout)
+          .on('mousemove',move_tooltip);
 
     //console.log(d3.keys(covid_data));
 

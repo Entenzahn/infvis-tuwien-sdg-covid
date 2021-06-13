@@ -13,14 +13,16 @@ function initMap() {
 
         // Selects the div for the map
         d3.select("#svg_map")
-            .attr("width", mapWidth) // Scales the svg container
-            .attr("height", mapHeight) // Scales the svg container
+            //.attr("width", mapWidth) // Scales the svg container
+            //.attr("height", mapHeight) // Scales the svg container
             .node().append(data.documentElement) // Attaches the xml data to the div
 
         // Styles the SVG path
-        map = d3.select("#svg_map").select("#svg2").selectAll("path")
+        map = d3.select("#svg_map").select("#svg2")
+            .attr("width", mapWidth) // Scales the svg container
+            .attr("height", mapHeight) // Scales the svg container
+            .selectAll("path")
             .attr("fill", "white")
-            // updateMap(sdg_ind))
             .attr('stroke', 'black')
             .attr('stroke-width', 0.5);
 

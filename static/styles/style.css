@@ -24,8 +24,15 @@ footer{
 
 #div_scatterplot_tmp{
     position:absolute;
-    x:300px;
     y:300px;
+}
+
+
+.svg-content-responsive {
+  display: inline-block;
+  position: absolute;
+  top: 10px;
+  left: 0;
 }
 
 .container {

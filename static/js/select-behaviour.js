@@ -1,5 +1,4 @@
 function activateSDG(sdg_ind){
-    console.log(sdg_ind)
     cov_ind = "test"
 
     //Map behaviour on SDG indicator change:
@@ -16,7 +15,6 @@ function activateSDG(sdg_ind){
 }
 
 function activateCovid(cov_ind){
-    console.log(cov_ind)
     sdg_ind = "test"
     //Map behaviour on Covid indicator change:
 
@@ -31,11 +29,11 @@ function activateCovid(cov_ind){
 }
 
 function updateDate(cur_date){
-    //console.log(cur_date)
     //Map behaviour on Covid indicator change:
 
     //Bar chart behaviour:
     updateVerticalCompDate();
+
     //Scatterplot:
     updateScatterplotCovid();
 
