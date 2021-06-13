@@ -34,8 +34,8 @@ footer{
     border: 0px solid black;
     text-align: center;
     font-size: large;
-    float:left;
     max-width:initial;
+    display:table-cell
 }
 
 .container vertBar{
