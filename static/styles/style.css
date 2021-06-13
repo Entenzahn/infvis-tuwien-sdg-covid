@@ -9,6 +9,10 @@ div#main{
     max-width:90%
 }
 
+#svg_map{
+    margin-left:400px;
+}
+
 header{
     background-color: #FF9933;
     width:100%
@@ -32,7 +36,14 @@ footer{
     font-size: large;
     float:left;
     max-width:initial;
-    display:table;
+}
+
+.container vertBar{
+    min-width:30%
+}
+
+.container map{
+    min-width:70%
 }
 
 #indicator-list {

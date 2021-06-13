@@ -25,16 +25,19 @@
     <h1>Influence of Indian Social Conditions to Address the Covid Crisis</h1>
 </header>
 
-<div id="main">
+<div id="main" width="100%">
 
     <div class="ui-element">
         <svg id="date_select"></svg>
+        <div id="selector_sdg">
+            <select></select>
+        </div>
+        <div id="selector_covid">
+            <select></select>
+        </div>
     </div>
     <!-- Choropleth map for SDG indicator -->
-    <div class="container">
-        <p id="selector_sdg">
-            <select></select>
-        </p>
+    <div class="container map">
         <div id="div_scatterplot_tmp">
             <svg id="svg_scatterplot"></svg>
         </div>
@@ -42,10 +45,7 @@
     </div>
 
     <!-- State comparison for covid indicator -->
-    <div class="container">
-        <p id="selector_covid">
-            <select></select>
-        </p>
+    <div class="container vertBar">
         <input type="checkbox" id="vertCompSort">
         <label for="vertCompSort"> Sort by Covid indicator</label><br>
         <input type="checkbox" id="vertCompPerPop">
