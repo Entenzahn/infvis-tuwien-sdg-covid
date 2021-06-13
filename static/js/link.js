@@ -5,11 +5,11 @@ function highlightState(){
         .attr('stroke-width', 2)
         .raise();
     d3.selectAll("#svg_state_compare g[state=" + s + "] .vertComp_val")
-        .attr('stroke', 'green')
+        .attr('fill', '#000080')
         .attr('stroke-width', 2)
         .raise();
     d3.selectAll("#svg_scatterplot circle[state=" + s + "]")
-        .style('fill', 'green')
+        .style('fill', '#000080')
         .raise();
 
     updateLinePlot(s);
@@ -29,9 +29,9 @@ function move_tooltip(){
 }
 function state_mouseout(){
     let s = d3.select(this).attr("state");
-    d3.select("#svg_state_compare g[state=" + s + "] .vertComp_val").attr("stroke", "none");
+    d3.select("#svg_state_compare g[state=" + s + "] .vertComp_val").attr("fill", "#138808");
     d3.select("#svg_map path[state=" + s + "]").attr("stroke", "black").attr("stroke-width", 0.5);
-    d3.selectAll("#svg_scatterplot circle[state=" + s + "]").style('fill', 'red');
+    d3.selectAll("#svg_scatterplot circle[state=" + s + "]").style('fill', '#138808');
     d3.select(".tooltip").style("visibility","hidden")
 }
 

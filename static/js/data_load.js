@@ -2,10 +2,12 @@ var sdg_data;
 var covid_data;
 var pop_data;
 var tooltip;
+var stage_width;
 
 function load_data(){
 
     d3.json("static/data/sdg.json").then(function(data){
+        state_width = d3.select("#main").node().clientWidth
         sdg_data = data
         console.log(data)
         console.log(d3.entries(sdg_data))
@@ -29,6 +31,7 @@ function load_data(){
             updateVerticalCompSDG();
             tooltip = initTooltip()
             generateLineChart(tooltip.select("#tooltip_trend"),"JK",500,150)
+            d3.select("#svg_map").node().style.marginLeft = scatterplotStageWidth+"px"
         });
 
     });

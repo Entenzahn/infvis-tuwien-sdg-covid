@@ -11,7 +11,7 @@ function SDGDropdown(){
     sdg_dropdown.selectAll("option")
         .data(d3.entries(sdg_data))
         .enter()
-        .filter(function (d){return (d.key !== "States/UTs")})
+        .filter(function (d){return (d.key !== "States/UTs" && !d.key.match('\\(Index\\)'))})
         .append("option")
         .attr("value",function (d){return d.key})
         .text(function (d){return d.key});

@@ -3,7 +3,7 @@ var vertCompare_width = 0;
 var vertCompare_margin = {};
 var vertCompare_height = 0;
 
-//ToDo: Show numbers, update x-axis, highlight null values
+//ToDo: Show numbers, highlight null values
 
 function build_dict(sdg_ind, cov_ind, end_date){
     let vert_dict = {};
@@ -87,6 +87,8 @@ function createVerticalComp(){
     let cov_ind = covid_dropdown.property("value")
     let end_date = date_slider.property("value")
 
+    stageWidth = d3.select("#main").node().clientWidth*0.15;
+
     tmp = build_dict(sdg_ind, cov_ind, end_date)
     vert_dict = tmp[0]
     min_val = tmp[1]
@@ -103,17 +105,19 @@ function createVerticalComp(){
 
 
 
-    svg = d3.select("#svg_state_compare").attr("width",vertCompare_width+vertCompare_margin.left+vertCompare_margin.right)
-    .attr("height",vertCompare_height+vertCompare_margin.top+vertCompare_margin.bottom)
+    svg = d3.select("#svg_state_compare")
+    .attr("width",stageWidth)
+    //.attr("height",vertCompare_height+vertCompare_margin.top+vertCompare_margin.bottom)
+    .attr("viewBox","0 0 "+ (vertCompare_width+vertCompare_margin.left+vertCompare_margin.right) + " "+(vertCompare_height+vertCompare_margin.top+vertCompare_margin.bottom))
     .append("g")
     .attr("transform", "translate("+vertCompare_margin.left+","+vertCompare_margin.top+")");
 
-    svg.append("g")
+    /*svg.append("g")
     .attr("transform", "translate(0," + vertCompare_height + ")")
     .call(d3.axisBottom(x))
     .selectAll("text")
       .attr("transform", "translate(-10,0)rotate(-45)")
-      .style("text-anchor", "end");
+      .style("text-anchor", "end");*/
 
 
     isCovidSort = d3.select("#vertCompSort").property("checked")
@@ -145,7 +149,7 @@ function createVerticalComp(){
             })
             .attr("value",function(d){return d.value[cov_ind]})
             .attr("height",y.bandwidth())
-            .attr("fill","#96b3a2")
+            .attr("fill","#138808")
             .classed("vertComp_val",true)
 
 
@@ -189,9 +193,9 @@ function createVerticalComp(){
         .on('mouseout', state_mouseout)
         .on('mousemove',move_tooltip);
 
-        d3.select("#vertCompXRange").on("change",updateVerticalCompXRange)
+        d3.select("#vertCompXRange").on("change",function(){updateVerticalCompXRange();updateScatterplotCovid();})
         d3.select("#vertCompSort").on("change",updateVerticalCompSort)
-        d3.select("#vertCompPerPop").on("change",function(){updateVerticalCompPerPop();updateLinePlot("JK")})
+        d3.select("#vertCompPerPop").on("change",function(){updateVerticalCompPerPop();updateLinePlot("JK");updateScatterplotCovid();})
 }
 
 function updateVerticalCompSDG(){

@@ -52,7 +52,8 @@ df_sdg = pd.merge(df_sdg, df_statenames, how="inner", left_on="States/UTs", righ
 # Store the SDG info as JSON file, using map ID to index the indicator dictionary of the state
 
 for c in df_sdg.columns:
-    ct = re.sub(r'\s?\.1$', ' (Index)', c)
+    ct = re.sub(r'\s*\.1$', ' (Index)', c)
+    ct = re.sub(r'\s+$', '', ct)
     df_sdg = df_sdg.rename(columns={c: ct})
 
 df_sdg.set_index(df_sdg["ID name"]).to_json(r'../static/data/sdg.json', indent=2)

@@ -1,12 +1,11 @@
-//ToDo: deal with null values, consistent coloring, perhaps only use index values and display SDG numbers in tooltip, legend
-
-let mapWidth = 1105;
-let mapHeight = 800;
+let mapWidth = 612;
+let mapHeight = 696;
 let map = null;
 let heatmap = null;
 
 // Initiates a blank map of India
 function initMap() {
+    stageWidth = d3.select("#main").node().clientWidth*0.35;
 
     // Loads the Indian svg by accessing the image document in xml language
     d3.xml("static/data/india.svg").then(function (data) {
@@ -19,8 +18,9 @@ function initMap() {
 
         // Styles the SVG path
         map = d3.select("#svg_map").select("#svg2")
-            .attr("width", mapWidth) // Scales the svg container
-            .attr("height", mapHeight) // Scales the svg container
+            .attr("width", stageWidth) // Scales the svg container
+            .attr("height", null) // Scales the svg container
+            .attr("viewBox","0 0 "+mapWidth+" "+mapHeight)
             .selectAll("path")
             .attr("fill", "white")
             .attr('stroke', 'black')
@@ -35,6 +35,10 @@ function initMap() {
 // Displays the heatmap of the activated SDG
 function updateMap(sdg_activated){
     // Scaling variables for the choropleth map
+    if(!sdg_activated.match('SDG \\d+ Index Score')){
+        sdg_activated = sdg_activated+" (Index)"
+        console.log(sdg_activated)
+    }
     let sdg_activated_values = sdg_data[sdg_activated];
     max_val = d3.max(d3.entries(sdg_activated_values),function(d){return d.value})
     min_val = d3.min(d3.entries(sdg_activated_values),function(d){return d.value})
@@ -47,7 +51,11 @@ function updateMap(sdg_activated){
 
     let color_scale = d3.scaleLinear()
                     .domain([0, 100])
-                    .range(["#FF0000","#FEFB01"])
+                    .range(["#FFEEDD","#FF9933"])
+
+    /*let color_scale = d3.scaleLinear()
+                    .domain([0, 100])
+                    .range([0.2,1.0])*/
 
     // Creates the heatmap
     d3.select("#svg_map").select("#svg2").selectAll("path")
@@ -56,9 +64,18 @@ function updateMap(sdg_activated){
                 if(val == null){
                     return "grey";
                 } else {
+                    //return "#FF9933"
                     return color_scale(sdg_activated_values[this.id])
                 }
             })
+        /*.attr("fill-opacity",function(d){
+            val = sdg_activated_values[this.id]
+            if(val == null){
+                    return 1;
+                } else {
+                    return color_scale(val)
+                }
+            })*/
         .attr("state",function(){return this.id})
         // Adds hovering events
         .on("mouseover",highlightState)

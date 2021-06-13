@@ -1,8 +1,11 @@
 // Sets the dimensions and margins of the graph
 var scatterplotWidth;
 var scatterplotHeight;
+var scatterplotStageWidth;
 
 function initScatterplot() {
+    scatterplotStageWidth = d3.select("#main").node().clientWidth*0.20;
+    let map_height = d3.select("#svg_map").node().clientHeight;
 
     let margin = {top: 10, right: 30, bottom: 30, left: 60};
     scatterplotWidth = 400 - margin.left - margin.right;
@@ -13,8 +16,10 @@ function initScatterplot() {
 
     // Append the svg object to the body of the page
     let svg = d3.select("#svg_scatterplot")
-        .attr("width", scatterplotWidth + margin.left + margin.right)
-        .attr("height", scatterplotHeight + margin.top + margin.bottom)
+        .attr("width", scatterplotStageWidth)// + margin.left + margin.right)
+        //.attr("height", scatterplotHeight + margin.top + margin.bottom)
+        .attr("viewBox","0 0 "+(scatterplotWidth+ margin.left + margin.right)+" "+(scatterplotHeight+ margin.top + margin.bottom))
+        .attr("transform", "translate(0,"+(map_height-scatterplotHeight)+")")
       .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -55,7 +60,7 @@ function initScatterplot() {
           .attr("cx", x(0))
           .attr("cy", y(0))
           .attr("r", 3)
-          .style("fill", "#FF0000")
+          .style("fill", "#138808")
           .on("mouseover",highlightState)
           .on('mouseout', state_mouseout)
           .on('mousemove',move_tooltip);
@@ -70,6 +75,12 @@ function updateScatterplotSDG(sdg_activated){
     let sdg_ind = sdg_dropdown.property("value")
     let cov_ind = covid_dropdown.property("value")
     let end_date = date_slider.property("value")
+
+
+    if(!sdg_activated.match('SDG \\d+ Index Score')){
+        sdg_activated = sdg_activated+" (Index)"
+        console.log(sdg_activated)
+    }
 
     // Scaling variables for the x axis
     let sdg_activated_values = sdg_data[sdg_activated];

@@ -25,7 +25,7 @@
     <h1>Influence of Indian Social Conditions to Address the Covid Crisis</h1>
 </header>
 
-<div id="main" width="100%">
+<div id="main">
 
     <div class="ui-element">
         <svg id="date_select"></svg>
@@ -35,6 +35,10 @@
         <div id="selector_covid">
             <select></select>
         </div>
+        <input type="checkbox" id="vertCompPerPop">
+        <label for="vertCompPerPop"> Per 100,000 citizens</label><br>
+        <input type="checkbox" id="vertCompXRange">
+        <label for="vertCompXRange"> Compare against all-time total</label><br>
     </div>
     <!-- Choropleth map for SDG indicator -->
     <div class="container map">
@@ -48,10 +52,6 @@
     <div class="container vertBar">
         <input type="checkbox" id="vertCompSort">
         <label for="vertCompSort"> Sort by Covid indicator</label><br>
-        <input type="checkbox" id="vertCompPerPop">
-        <label for="vertCompPerPop"> Per 100,000 citizens</label><br>
-        <input type="checkbox" id="vertCompXRange">
-        <label for="vertCompXRange"> Compare against all-time total</label><br>
         <svg id="svg_state_compare"></svg>
     </div>
 
@@ -64,7 +64,24 @@
         <svg id="svg_state_trends" width="1000" height="1000"></svg>
     </div> -->
 </div>
-<div class="treatise">
+<div id="treatise">
+    <h2>ToDo</h2>
+    <p>
+        <ul>
+            <li>Pick a date range</li>
+            <li>Pick SDG and Covid values</li>
+            <li>Highlight null values on bar chart, line chart and scatter plot, as well as tooltip text</li>
+            <li>Legend for map, line and bar chart</li>
+            <li>Arrange and style checkboxes/dropdowns</li>
+            <li>Display numbers at horizontal bar chart</li>
+            <li>Feedback: Finalize color scheme</li>
+            <li>Feedback: Finalize hover effects for state elements</li>
+            <li>Finalize styling of state names and SDG color link in bar chart</li>
+            <li>Add our hypothesis explanations</li>
+            <li>Tooltip number should reflect perPop selection</li>
+            <li>Consistent line ticks for linechart and scatterplot</li>
+        </ul>
+    </p>
     <h2>Hypothesis & Data Sources</h2>
     <p>Two ideas for analysis perhaps: predicting full vaccination saturation or something akin to chi-square computation to filter out the SDG factors on which covid performance (such as vaccination rate) is most dependent.</p>
     <h2>Preprocessing</h2>

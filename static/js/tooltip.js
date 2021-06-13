@@ -1,4 +1,3 @@
-//ToDo: read out actual and index numbers, add date, special text for null values
 //Bugs: doesn't work on first date of slider
 
 function initTooltip(){

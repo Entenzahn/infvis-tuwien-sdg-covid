@@ -179,7 +179,7 @@
     "LD":17.5,
     "PY":21.4
   },
-  "Percentage of households living in katcha houses (rural + urban) ":{
+  "Percentage of households living in katcha houses (rural + urban)":{
     "AP":3.2,
     "AR":29.0,
     "AS":2.4,
@@ -539,7 +539,7 @@
     "LD":36.5,
     "PY":26.0
   },
-  "Percentage of children aged 6-59 months who are anaemic (Hb<11.0 g\/dl) ":{
+  "Percentage of children aged 6-59 months who are anaemic (Hb<11.0 g\/dl)":{
     "AP":39.6,
     "AR":28.3,
     "AS":33.7,
@@ -575,7 +575,7 @@
     "LD":null,
     "PY":null
   },
-  "Percentage children aged 0\u20134 years who are underweight ":{
+  "Percentage children aged 0\u20134 years who are underweight":{
     "AP":35.5,
     "AR":16.0,
     "AS":29.4,
@@ -2375,7 +2375,7 @@
     "LD":null,
     "PY":null
   },
-  "Female to male ratio of average wage\/salary earnings received during the preceding calendar month among regular wage salaried\nemployees (rural+urban) ":{
+  "Female to male ratio of average wage\/salary earnings received during the preceding calendar month among regular wage salaried\nemployees (rural+urban)":{
     "AP":0.6789839573,
     "AR":0.7176862477,
     "AS":0.7419612524,
@@ -2411,7 +2411,7 @@
     "LD":null,
     "PY":0.8116215506
   },
-  "Rate of Crimes Against Women Per 100,000\nFemale Population\n":{
+  "Rate of Crimes Against Women Per 100,000\nFemale Population":{
     "AP":68.9,
     "AR":53.4,
     "AS":143.6,
@@ -2483,7 +2483,7 @@
     "LD":8.9,
     "PY":40.3
   },
-  "Proportion of sexual crime against girl\nchildren to total crime against children during the calendar year\n":{
+  "Proportion of sexual crime against girl\nchildren to total crime against children during the calendar year":{
     "AP":63.0825688073,
     "AR":55.487804878,
     "AS":43.040610899,
@@ -3527,7 +3527,7 @@
     "LD":null,
     "PY":100.0
   },
-  "Percentage of households using clean cooking fuel (LPG) ":{
+  "Percentage of households using clean cooking fuel (LPG)":{
     "AP":81.3,
     "AR":64.7,
     "AS":59.2,
@@ -3671,7 +3671,7 @@
     "LD":43,
     "PY":97
   },
-  "Annual growth rate of Net Domestic Product (NDP) per capita ":{
+  "Annual growth rate of Net Domestic Product (NDP) per capita":{
     "AP":10.0714830151,
     "AR":5.0848056537,
     "AS":6.2405805191,
@@ -3887,7 +3887,7 @@
     "LD":100.0,
     "PY":100.0
   },
-  "Proportion of women account holders under PMJDY ":{
+  "Proportion of women account holders under PMJDY":{
     "AP":0.574365502,
     "AR":0.553045801,
     "AS":0.586883252,
@@ -4715,7 +4715,7 @@
     "LD":null,
     "PY":null
   },
-  "Proportion of SC\/ST persons in state legislative assemblies ":{
+  "Proportion of SC\/ST persons in state legislative assemblies":{
     "AP":20.5714285714,
     "AR":98.3333333333,
     "AS":19.0476190476,
@@ -5579,7 +5579,7 @@
     "LD":null,
     "PY":53.0
   },
-  "Percentage ground water withdrawal against availability ":{
+  "Percentage ground water withdrawal against availability":{
     "AP":44.15,
     "AR":0.28,
     "AS":11.25,
@@ -5687,7 +5687,7 @@
     "LD":0.0,
     "PY":null
   },
-  "Ratio of processed quantity of hazard waste sent to recycle to hazard waste generated ":{
+  "Ratio of processed quantity of hazard waste sent to recycle to hazard waste generated":{
     "AP":0.0527189702,
     "AR":null,
     "AS":null,
@@ -5723,7 +5723,7 @@
     "LD":0.0,
     "PY":0.1088230403
   },
-  "Municipal Solid Waste (MSW) treated against MSW generated ":{
+  "Municipal Solid Waste (MSW) treated against MSW generated":{
     "AP":7.7639751553,
     "AR":0.0,
     "AS":0.0,
@@ -5759,7 +5759,7 @@
     "LD":null,
     "PY":0.0
   },
-  "Installed Capacity of Grid Interactive Bio Power per 100,000 population ":{
+  "Installed Capacity of Grid Interactive Bio Power per 100,000 population":{
     "AP":0.9231705967,
     "AR":null,
     "AS":null,
@@ -6155,7 +6155,7 @@
     "LD":null,
     "PY":null
   },
-  "Renewable share of installed generating capacity ":{
+  "Renewable share of installed generating capacity":{
     "AP":39.7350742097,
     "AR":75.1230942635,
     "AS":30.7897826175,
@@ -6587,7 +6587,7 @@
     "LD":null,
     "PY":null
   },
-  "Percentage increase in area of desertification ":{
+  "Percentage increase in area of desertification":{
     "AP":1.3683298879,
     "AR":12.6179711163,
     "AS":25.2319495295,
@@ -7019,7 +7019,7 @@
     "LD":null,
     "PY":null
   },
-  "Cases Reported under Prevention of Corruption Act & Related Sections of IPC per 100,000 population ":{
+  "Cases Reported under Prevention of Corruption Act & Related Sections of IPC per 100,000 population":{
     "AP":0.3817379628,
     "AR":0.8270676692,
     "AS":0.0819921045,
