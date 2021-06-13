@@ -51,7 +51,7 @@ function DateSlider(){
 
     let margin = {top:0, right:50, bottom:0, left:50},
     width = 1200 -margin.left - margin.right,
-    height = 300 - margin.top - margin.bottom;
+    height = 80 - margin.top - margin.bottom;
 
     let formatDateIntoMonth = d3.timeFormat("%m/%Y");
     let formatDate = d3.timeFormat("%d %b %Y");

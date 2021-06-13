@@ -21,16 +21,23 @@
 </head>
 <body>
 
-<h1>Influence of Indian Social Conditions to Address the Covid Crisis</h1>
-<p>Philipp Piwonka - 12002294</p>
-<p>Alice Martzloff - 12041022</p>
+<header>
+    <h1>Influence of Indian Social Conditions to Address the Covid Crisis</h1>
+</header>
 
 <div id="main">
+
+    <div class="ui-element">
+        <svg id="date_select"></svg>
+    </div>
     <!-- Choropleth map for SDG indicator -->
     <div class="container">
         <p id="selector_sdg">
             <select></select>
         </p>
+        <div id="div_scatterplot_tmp">
+            <svg id="svg_scatterplot"></svg>
+        </div>
         <div id="svg_map"></div>
     </div>
 
@@ -48,33 +55,37 @@
         <svg id="svg_state_compare"></svg>
     </div>
 
-    <div class="ui">
-        <svg id="date_select"></svg>
-    </div>
-
     <!-- SDG/Covid scatter plot -->
     <div class="container">
-        <svg id="svg_scatterplot"></svg>
     </div>
 
-    <!-- Covid indicator development per state -->
+    <!-- Covid indicator development per state
     <div class="container">
         <svg id="svg_state_trends" width="1000" height="1000"></svg>
-    </div>
+    </div> -->
 </div>
 <div class="treatise">
-    Two ideas for analysis perhaps: predicting full vaccination saturation or something akin to chi-square computation to filter out the SDG factors on which covid performance (such as vaccination rate) is most dependent.
+    <h2>Hypothesis & Data Sources</h2>
+    <p>Two ideas for analysis perhaps: predicting full vaccination saturation or something akin to chi-square computation to filter out the SDG factors on which covid performance (such as vaccination rate) is most dependent.</p>
+    <h2>Preprocessing</h2>
+    <p>Two ideas for analysis perhaps: predicting full vaccination saturation or something akin to chi-square computation to filter out the SDG factors on which covid performance (such as vaccination rate) is most dependent.</p>
+    <h2>Development</h2>
+    <p>Two ideas for analysis perhaps: predicting full vaccination saturation or something akin to chi-square computation to filter out the SDG factors on which covid performance (such as vaccination rate) is most dependent.</p>
+    <h2>Analysis</h2>
+    <p>Two ideas for analysis perhaps: predicting full vaccination saturation or something akin to chi-square computation to filter out the SDG factors on which covid performance (such as vaccination rate) is most dependent.</p>
 </div>
 
 <script>
     load_data();
 </script>
 
-</body>
-<foot>
+<footer>
+    <p>Philipp Piwonka - 12002294</p>
+    <p>Alice Martzloff - 12041022</p>
     Data sources:
     Indian population estimate for 2020: https://uidai.gov.in/
     Covid numbers:
     SDG numbers:
-</foot>
+</footer>
+</body>
 </html>

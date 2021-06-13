@@ -8,6 +8,9 @@ function highlightState(){
         .attr('stroke', 'green')
         .attr('stroke-width', 2)
         .raise();
+    d3.selectAll("#svg_scatterplot circle[state=" + s + "]")
+        .style('fill', 'green')
+        .raise();
 
     updateLinePlot(s);
     updateTooltip(s);
@@ -28,6 +31,7 @@ function state_mouseout(){
     let s = d3.select(this).attr("state");
     d3.select("#svg_state_compare g[state=" + s + "] .vertComp_val").attr("stroke", "none");
     d3.select("#svg_map path[state=" + s + "]").attr("stroke", "black").attr("stroke-width", 0.5);
+    d3.selectAll("#svg_scatterplot circle[state=" + s + "]").style('fill', 'red');
     d3.select(".tooltip").style("visibility","hidden")
 }
 

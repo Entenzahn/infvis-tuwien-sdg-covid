@@ -9,9 +9,23 @@ div#main{
     max-width:90%
 }
 
+header{
+    background-color: #FF9933;
+    width:100%
+}
+footer{
+    background-color: #138808;
+    width:100%
+}
+
+#div_scatterplot_tmp{
+    position:absolute;
+    x:300px;
+    y:300px;
+}
+
 .container {
     vertical-align:top;
-    height: 500px;
     padding: 10px;
     border: 0px solid black;
     text-align: center;

@@ -24,7 +24,7 @@ function activateCovid(cov_ind){
     updateVerticalCompCovid();
 
     //Scatterplot:
-    updateScatterplotCovid(cov_ind);
+    updateScatterplotCovid();
 
     //Trend overview:
     updateLinePlot("JK")
@@ -37,6 +37,7 @@ function updateDate(cur_date){
     //Bar chart behaviour:
     updateVerticalCompDate();
     //Scatterplot:
+    updateScatterplotCovid();
 
     //Trend overview:
     updateLinePlot("JK")

@@ -1,4 +1,5 @@
 //ToDo: read out actual and index numbers, add date, special text for null values
+//Bugs: doesn't work on first date of slider
 
 function initTooltip(){
     let sdg_ind = sdg_dropdown.property("value")
@@ -28,7 +29,7 @@ function updateTooltip(id){
     let cov_ind = covid_dropdown.property("value")
     let end_date = date_slider.property("value")
 
-    let cov_val = covid_data[id].filter(function(d){return d.DateUNIX.getTime()==end_date.getTime()})[0][cov_ind]
+    let cov_val = covid_data[id].filter(function(d){return d.DateUNIX.getTime()==end_date.getTime()})[0][cov_ind] //ToDo: fix this
 
     d3.select("p.sdg-tooltip").text(sdg_ind +": "+sdg_data[sdg_ind][id])
     d3.select("p.cov-tooltip").text(cov_ind +": "+d3.format(',')(cov_val))

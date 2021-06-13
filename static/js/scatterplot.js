@@ -1,9 +1,12 @@
 // Sets the dimensions and margins of the graph
-let margin = {top: 10, right: 30, bottom: 30, left: 60},
-    scatterplotWidth = 460 - margin.left - margin.right,
-    scatterplotHeight = 400 - margin.top - margin.bottom;
+var scatterplotWidth;
+var scatterplotHeight;
 
 function initScatterplot() {
+
+    let margin = {top: 10, right: 30, bottom: 30, left: 60};
+    scatterplotWidth = 400 - margin.left - margin.right;
+    scatterplotHeight = 340 - margin.top - margin.bottom;
 
     let sdg_ind = sdg_dropdown.property("value"),
         cov_ind = covid_dropdown.property("value");
@@ -18,7 +21,7 @@ function initScatterplot() {
     //console.log(sdg_ind, cov_ind);
 
     // Add X axis
-    min_ind = 0,
+    min_ind = -10,
     max_ind = 100;
 
     var x = d3.scaleLinear()
@@ -47,9 +50,10 @@ function initScatterplot() {
         .enter()
         .append("circle")
           .attr("state", function(d){
-          return d})
-          .attr("cx", 50)
-          .attr("cy", 0.55)
+            return d
+          })
+          .attr("cx", x(0))
+          .attr("cy", y(0))
           .attr("r", 3)
           .style("fill", "#FF0000")
 
@@ -60,14 +64,16 @@ function initScatterplot() {
 }
 
 function updateScatterplotSDG(sdg_activated){
+    let sdg_ind = sdg_dropdown.property("value")
+    let cov_ind = covid_dropdown.property("value")
+    let end_date = date_slider.property("value")
 
     // Scaling variables for the x axis
     let sdg_activated_values = sdg_data[sdg_activated];
-    min_val = d3.min(d3.entries(sdg_activated_values),function(d){return d.value});
-    max_val = d3.max(d3.entries(sdg_activated_values),function(d){return d.value});
-
-    //console.log("SDG :", min_val, max_val);
-    //console.log(sdg_activated_values);
+    /*min_val = d3.min(d3.entries(sdg_activated_values),function(d){return d.value});
+    max_val = d3.max(d3.entries(sdg_activated_values),function(d){return d.value});*/
+    min_val = -10
+    max_val = 100
 
     let svg = d3.select("#svg_scatterplot g");
 
@@ -76,30 +82,46 @@ function updateScatterplotSDG(sdg_activated){
         .range([0, scatterplotWidth])
 
     // Removes the x axis
-    svg.selectAll(".axis_x").remove();
+    //svg.selectAll(".axis_x").remove();
 
     // Re-adds the x axis again
-    svg.append("g")
+    /*svg.append("g")
         .classed("axis_x",true)
         .attr("transform", "translate(0," + scatterplotHeight + ")")
-        .call(d3.axisBottom(x));
+        .call(d3.axisBottom(x));*/
 
-    svg.selectAll("circle")
-    .data(d3.values(sdg_activated_values))
-    .attr("cx", function(d){
-    console.log(d);
-    // Why not the same scale/px ?
-    return x(d)});
+    svg.selectAll("circle").each(function(d){
+        let c = d3.select(this)
+        let s = c.attr("state")
+        val = sdg_activated_values[s]
+
+        c.attr("cx",x(val))
+    })
+
+    //ToDo push null values into -5 area
+    //d3.select("#svg_scatterplot").select(".axis_x").selectAll("text").filter(function(d){return d=="-10"}).text("No data")
 }
 
-function updateScatterplotCovid(covid_activated){
+function updateScatterplotCovid(){
+    let sdg_ind = sdg_dropdown.property("value")
+    let cov_ind = covid_dropdown.property("value")
+    let end_date = date_slider.property("value")
+    let isTotalRange = d3.select("#vertCompXRange").property("checked")
+    let isPerPop = d3.select("#vertCompPerPop").property("checked")
+
+    tmp = build_dict(sdg_ind, cov_ind, end_date)
+    vert_dict = tmp[0]
+    min_val = tmp[1]
+    max_val = tmp[2]
 
     // Scaling variables for the y axis
     min_covid = 0;
-    max_covid = getMaxCovid(covid_activated);
-
-    //console.log("Covid :", min_covid, max_covid);
-    console.log(covid_data);
+    max_covid = 0;
+    if(isTotalRange){
+        max_covid = getMaxCovid(cov_ind);
+    } else {
+        max_covid = max_val;
+    }
 
     let svg = d3.select("#svg_scatterplot g");
 
@@ -114,6 +136,14 @@ function updateScatterplotCovid(covid_activated){
     svg.append("g")
         .classed("axis_y",true)
         .call(d3.axisLeft(y));
+
+    svg.selectAll("circle").each(function(d){
+        let c = d3.select(this)
+        let s = c.attr("state")
+        val = vert_dict[s][cov_ind]
+
+        c.attr("cy",y(val))
+    })
 
     /*d3.entries(covid_data).forEach(function(d){
         let state = d.key;

@@ -92,10 +92,6 @@ function createVerticalComp(){
     min_val = tmp[1]
     max_val = tmp[2]
 
-    console.log(vert_dict)
-    console.log(min_val)
-    console.log(max_val)
-
     vertCompare_margin = {top: 20, right: 30, bottom: 80, left: 90};
     vertCompare_width = 300 - vertCompare_margin.left - vertCompare_margin.right;
     vertCompare_height = 800 - vertCompare_margin.top - vertCompare_margin.bottom;
