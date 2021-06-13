@@ -46,6 +46,8 @@ function initScatterplot() {
         .data(d3.keys(covid_data))
         .enter()
         .append("circle")
+          .attr("state", function(d){
+          return d})
           .attr("cx", 50)
           .attr("cy", 0.55)
           .attr("r", 3)
@@ -87,7 +89,7 @@ function updateScatterplotSDG(sdg_activated){
     .attr("cx", function(d){
     console.log(d);
     // Why not the same scale/px ?
-    return d*10});
+    return x(d)});
 }
 
 function updateScatterplotCovid(covid_activated){
