@@ -142,6 +142,7 @@ div.tooltip h3{
 }
 
 div.tooltip p{
+    max-width:400px;
     font-size: 0.8em;
     padding:0px;
     margin:5px;

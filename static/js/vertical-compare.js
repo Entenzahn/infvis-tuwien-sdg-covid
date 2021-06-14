@@ -155,20 +155,25 @@ function createVerticalComp(){
 
             d3.select(this)
             .append("rect")
-            .attr("x",-(y.bandwidth()))
+            .attr("x",-(y.bandwidth())-2)
             .attr("y",function(d){return y(d.key)})
             .attr("width", y.bandwidth())
             .attr("height", y.bandwidth())
             .text(d.key)
             .classed("vertComp_bg",true)
 
+
+             let origY = y(d.key)
+             let origX = -2*(y.bandwidth())+18
             d3.select(this)
             .append("text")
             .text(d.key)
-            .attr("x",-(y.bandwidth()))
-            .attr("y",function(d){return y(d.key)})
+            .attr("x",origX)
+            .attr("y",origY)
             .attr("width", y.bandwidth())
             .attr("height", y.bandwidth())
+            .attr("font-size", y.bandwidth()/2)
+            .attr("transform", "rotate(90,"+origX+","+origY+")")
             .classed("vertComp_label",true)
 
             d3.select(this)
@@ -228,6 +233,11 @@ function updateVerticalCompSDG(){
                 setTimeout(function(){d3.selectAll("#svg_state_compare g g[state="+d.key+"] > *").transition()
                 .duration(1000)
                 .attr("y",y(d.key))
+                .attr("transform", function(d){
+                    if(d3.select(this).classed("vertComp_label")){
+                        return "rotate(90,"+(-2*(y.bandwidth())+18)+","+y(d.key)+")"
+                    } else {return null;}
+                })
                 },600);
             }
 
@@ -284,6 +294,11 @@ function updateVerticalCompPerPop(){
                 d3.selectAll("#svg_state_compare g g[state="+d.key+"] > *").transition()
                 .duration(1000)
                 .attr("y",y(d.key))
+                .attr("transform", function(d){
+                    if(d3.select(this).classed("vertComp_label")){
+                        return "rotate(90,"+(-2*(y.bandwidth())+18)+","+y(d.key)+")"
+                    } else {return null;}
+                })
 
             })
         }
@@ -371,6 +386,11 @@ function updateVerticalCompCovid(){
                 d3.selectAll("#svg_state_compare g g[state="+d.key+"] > *").transition()
                 .duration(1000)
                 .attr("y",y(d.key))
+                .attr("transform", function(d){
+                    if(d3.select(this).classed("vertComp_label")){
+                        return "rotate(90,"+(-2*(y.bandwidth())+18)+","+y(d.key)+")"
+                    } else {return null;}
+                })
 
             })
         }
@@ -399,6 +419,11 @@ function updateVerticalCompSort(){
         d3.selectAll("#svg_state_compare g g[state="+d.key+"] > *").transition()
         .duration(1000)
         .attr("y",y(d.key))
+        .attr("transform", function(d){
+            if(d3.select(this).classed("vertComp_label")){
+                return "rotate(90,"+(-2*(y.bandwidth())+18)+","+y(d.key)+")"
+            } else {return null;}
+        })
 
     })
 }
@@ -426,15 +451,27 @@ function updateVerticalCompDate(){
     d3.entries(vert_dict).forEach(function(d){
         let val = d.value[cov_ind]
         if(val === null){
+            console.log("LOL")
             d3.select("#svg_state_compare g g[state="+d.key+"] rect.vertComp_val")
             .attr("width", 0)
             .attr("value",0)
             .attr("x",x(0))
+
+            d3.select("#svg_state_compare g g[state=TE] rect.vertComp_overlay")
+                .attr("fill","red")
+                .attr("opacity",1)
+                .attr("fill-opacity",0.5)
+                .attr("stroke","red")
+
         } else {
             d3.select("#svg_state_compare g g[state="+d.key+"] rect.vertComp_val")
             .attr("width", x(val))
             .attr("value",val)
             .attr("x",x(0))}
+
+            d3.select("#svg_state_compare g g[state="+d.key+"] rect.vertComp_overlay")
+            .attr("fill",null)
+            .attr("opacity",0)
         })
 
     /* Not sure I like the behaviour of having the records flip around while the user is still holding on to the button

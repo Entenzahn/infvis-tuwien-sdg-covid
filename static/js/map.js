@@ -23,7 +23,7 @@ function initMap() {
             .attr("viewBox","0 0 "+mapWidth+" "+mapHeight)
             .selectAll("path")
             .attr("fill", "white")
-            .attr('stroke', 'black')
+            .attr('stroke', 'white')
             .attr('stroke-width', 0.5);
 
         // Displays the first heatmap in the beginning
@@ -51,7 +51,7 @@ function updateMap(sdg_activated){
 
     let color_scale = d3.scaleLinear()
                     .domain([0, 100])
-                    .range(["#FFEEDD","#FF9933"])
+                    .range(["#EEEEEE","#000080"])
 
     /*let color_scale = d3.scaleLinear()
                     .domain([0, 100])
@@ -62,7 +62,7 @@ function updateMap(sdg_activated){
         .attr("fill", function(d){
                 val = sdg_activated_values[this.id]
                 if(val == null){
-                    return "grey";
+                    return "black";
                 } else {
                     //return "#FF9933"
                     return color_scale(sdg_activated_values[this.id])

@@ -30,7 +30,7 @@ function load_data(){
             initScatterplot()
             updateVerticalCompSDG();
             tooltip = initTooltip()
-            generateLineChart(tooltip.select("#tooltip_trend"),"JK",500,150)
+            generateLineChart(tooltip.select("#tooltip_trend"),"JK",400,150)
             d3.select("#svg_map").node().style.marginLeft = scatterplotStageWidth+"px"
         });
 

@@ -60,7 +60,7 @@ function initScatterplot() {
           .attr("cx", x(0))
           .attr("cy", y(0))
           .attr("r", 3)
-          .style("fill", "#138808")
+          .style("fill", "#000080")
           .on("mouseover",highlightState)
           .on('mouseout', state_mouseout)
           .on('mousemove',move_tooltip);
