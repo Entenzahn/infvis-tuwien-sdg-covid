@@ -5,21 +5,60 @@ var end_date
 
 function SDGDropdown(){
 
-    sdg_dropdown = d3.select("#selector_sdg")
-        .select("select")
+    d3.json("static/data/select_dropdown_groups.json").then(function(data){
 
-    sdg_dropdown.selectAll("option")
-        .data(d3.entries(sdg_data))
-        .enter()
-        .filter(function (d){return (d.key !== "States/UTs" && !d.key.match('\\(Index\\)'))})
-        .append("option")
-        .attr("value",function (d){return d.key})
-        .text(function (d){return d.key});
+        sdg_dropdown = d3.select("#selector_sdg")
+            .select("select")
 
-    sdg_dropdown.on("change", function(d) {
-        activateSDG(d3.select(this).property("value"));
+        sdg_dropdown.selectAll("optgroup")
+            .data(d3.entries(data))
+            .enter()
+            .append("optgroup")
+            .attr("label",function(d){return d.key})
+            .each(function(d){
+                d3.select(this)
+                    .selectAll("option")
+                    .data(d.value)
+                    .enter()
+                    .append("option")
+                    .attr("value",function (d){return d})
+                    .text(function (d){return d});
+            })
+
+        sdg_dropdown.on("change", function(d) {
+            activateSDG(d3.select(this).property("value"));
+        })
     })
 }
+
+/*
+function CovidDropdown(){
+
+    d3.json("static/data/covid_dropdown.json").then(function(data){
+        covid_dropdown = d3.select("#selector_covid")
+            .select("select")
+
+        covid_dropdown.selectAll("optgroup")
+            .data(d3.entries(data))
+            .enter()
+            .append("optgroup")
+            .attr("label",function(d){return d.key})
+            .each(function(d){
+                d3.select(this)
+                    .selectAll("option")
+                    .data(d.value)
+                    .enter()
+                    .append("option")
+                    .attr("value",function (d){return d})
+                    .text(function (d){return d});
+            })
+
+        covid_dropdown.on("change", function(d) {
+            activateCovid(d3.select(this).property("value"));
+        })
+    })
+}
+*/
 function CovidDropdown(){
 
     covid_dropdown = d3.select("#selector_covid")

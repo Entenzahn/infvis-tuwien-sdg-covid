@@ -17,11 +17,6 @@ df_vac = pd.read_csv("data/covid_vaccine_statewise.csv")
 df_inf = pd.read_csv("data/covid_19_india.csv")
 df_test = pd.read_csv("data/StatewiseTestingDetails.csv")
 
-print(df_vac["State"].unique())
-print(df_inf["State/UnionTerritory"].unique())
-print(df_test["State"].unique())
-
-
 def readExcel(sheetname):
         return pd.read_excel("data/rawPovertyRateData.xlsx", engine="openpyxl", sheet_name=sheetname, nrows=36,
                              skiprows=lambda x: x in [1, 1], header=0).drop(columns="SNO", errors="ignore")
@@ -30,11 +25,44 @@ def readExcel(sheetname):
 sheet_names = ["SDG-1", "SDG-2", "SDG-3", "SDG-4", "SDG-5", "SDG-6", "SDG-7", "SDG-8", "SDG-9", "SDG-10", "SDG-11",
                "SDG-12", "SDG-13", "SDG-15", "SDG-16"]
 
-#it's 2.30 in the morning and i want to die pandas is stupid and i refuse to explain this
+sheet_names_full_dict = {
+    "SDG-1": "SDG 1 - No Poverty",
+    "SDG-2": "SDG 2 - Zero Hunger",
+    "SDG-3": "SDG 3 - Good Health and Well-being",
+    "SDG-4": "SDG 4 - Quality Education",
+    "SDG-6": "SDG 6 - Clean Water and Sanitation",
+    "SDG-8": "SDG 8 - Decent Work and Economic Growth",
+    "SDG-9": "SDG 9 - Industry, Innovation and Infrastructure",
+    "SDG-10": "SDG 10 - Reduced Inequality",
+    "SDG-16": "SDG 16 - Peace and Justice Strong Institutions"
+}
+
+df_sdg_groups = {}
+delete_cols = ["States/UTs",
+               "Unnamed: 19",
+               "Unnamed: 20",
+               "Percentage of children under age 5 years who are stunted",
+               "Rice, wheat and coarse cereals produced annually per unit area (Kg/Ha)",
+               "Gender Parity Index for Higher education (18-23 years)",
+               ]
+
+# Read all sheets into dataframe and build select option dictionary
 l_sdg = list()
 
+#Build the entire dataframe + build the data structure for our dropdown menus
 for i in range(0, (len(sheet_names))):
-    l_sdg.append(readExcel(sheet_names[i]))
+    sn = sheet_names[i]
+    l_sdg.append(readExcel(sn))
+    if sn in sheet_names_full_dict:
+        tmp_df = readExcel(sn)
+        for c in tmp_df.columns:
+            if re.search(r'\s*\.1$', c) or c in delete_cols:
+                tmp_df = tmp_df.drop(columns=[c])
+            tmp_df = tmp_df.rename(columns={c: re.sub(r'\s+$', '', c)})
+        df_sdg_groups[sheet_names_full_dict[sn]] = tmp_df.columns.tolist() # must be list to JSONify
+
+with open("../static/data/select_dropdown_groups.json", "w") as fp:
+    json.dump(df_sdg_groups, fp, indent=2)
 
 df_sdg = l_sdg[0]
 for i in range(1,len(l_sdg)):
@@ -77,14 +105,10 @@ df_cov = df_cov.drop(columns=["State/UnionTerritory","Date"]).merge(
 )
 df_cov["Updated On"] = df_cov["Updated On"].fillna(df_cov["Date"])
 
-print(df_cov["State"].unique())
-
 df_cov = df_cov.drop(columns=["Date"]).merge(
     df_statenames, how="inner", left_on="State", right_on="Dataset name"
 ).drop(columns=["Dataset name","Complete name"]).rename(columns={"Updated On":"Date"})
 
-
-print(df_cov["State"].unique())
 
 # Since we want to go "up to" a certain date, better to store the individual dated measurements in a sorted array.
 # Be sure to convert NaN -> null
@@ -106,3 +130,20 @@ with open("../static/data/covid.json", "w") as fp:
 df_pop = pd.read_excel("data/population_by_state.xlsx", engine="openpyxl")
 df_pop = df_pop.merge(df_statenames, left_on="State", right_on="Dataset name")
 df_pop.set_index(df_pop["ID name"])["Total Population(Projected 2020)"].to_json(r'../static/data/pop.json', indent=2)
+
+delete_cols_cov = ["ID name","DateUNIX","Sno","Time","ConfirmedIndianNational","ConfirmedForeignNational",
+                   "Transgender(Individuals Vaccinated)","Negative","Positive","Updated On","Date","State","State/UnionTerritory"]
+cov_select_dict = {"Vaccination data":[], "Testing data":[]}
+
+for c in df_inf.columns:
+    if c not in delete_cols_cov:
+        cov_select_dict["Testing data"].append(c)
+for c in df_test.columns:
+    if c not in delete_cols_cov:
+        cov_select_dict["Testing data"].append(c)
+for c in df_vac.columns:
+    if c not in delete_cols_cov:
+        cov_select_dict["Vaccination data"].append(c)
+
+with open("../static/data/covid_dropdown.json", "w") as fp:
+    json.dump(cov_select_dict, fp, indent=2)

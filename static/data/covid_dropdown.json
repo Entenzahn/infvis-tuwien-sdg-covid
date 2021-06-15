@@ -1,0 +1,25 @@
+{
+  "Vaccination data": [
+    "Total Individuals Vaccinated",
+    "Total Sessions Conducted",
+    "Total Sites ",
+    "First Dose Administered",
+    "Second Dose Administered",
+    "Male(Individuals Vaccinated)",
+    "Female(Individuals Vaccinated)",
+    "Total Covaxin Administered",
+    "Total CoviShield Administered",
+    "Total Sputnik V Administered",
+    "AEFI",
+    "18-45 years (Age)",
+    "45-60 years (Age)",
+    "60+ years (Age)",
+    "Total Doses Administered"
+  ],
+  "Testing data": [
+    "Cured",
+    "Deaths",
+    "Confirmed",
+    "TotalSamples"
+  ]
+}

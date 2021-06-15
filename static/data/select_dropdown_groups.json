@@ -1,0 +1,90 @@
+{
+  "SDG 1 - No Poverty": [
+    "Percentage of population living below national poverty line",
+    "Percentage of households with any usual member covered by any health scheme or health insurance",
+    "Persons provided employment as a percentage of persons who demanded employment under Mahatma Gandhi National Rural Employment Guarantee Act (MGNREGA)",
+    "Proportion of the population (out of total eligible population) receiving social protection benefit under Maternity Benefit",
+    "Percentage of households living in katcha houses (rural + urban)",
+    "SDG 1 Index Score"
+  ],
+  "SDG 2 - Zero Hunger": [
+    "Ratio of rural households covered under public distribution system (PDS) to rural households where monthly income of highest earning member is less than Rs.5,000",
+    "Percentage of pregnant women aged 15-49 years who are anaemic",
+    "Percentage of children aged 6-59 months who are anaemic (Hb<11.0 g/dl)",
+    "Percentage children aged 0\u20134 years who are underweight",
+    "Gross Value Added in Agriculture per worker",
+    "SDG 2 Index Score"
+  ],
+  "SDG 3 - Good Health and Well-being": [
+    "Maternal Mortality Ratio (MMR)",
+    "Proportion of institutional deliveries",
+    "Under 5 mortality rate per 1000 live births",
+    "Percentage of fully immunised children in the age group 0-5 years",
+    "Total case notification rate of Tuberculosis per 1 lakh population",
+    "HIV Incidence per 1000 uninfected population",
+    "Percentage of currently married women aged 15-49 years who use any modern method of family planning",
+    "Total physicians, nurses and midwives per 10000 population",
+    "SDG 3 Index Score"
+  ],
+  "SDG 4 - Quality Education": [
+    "Adjusted Net Enrolment Ratio in Elementary (Class 1-8) and Secondary (Class 9-10) education",
+    "Percentage of children in the age group 6-13 years who are out of school",
+    "Average annual drop out rate at secondary level",
+    "Percentage of students in grade III, V, VIII and  X  achieving  at  least  a  minimum  proficiency  level  in terms of nationally defined learning outcomes to be attained by pupils at the end of each of above grades",
+    "Gross Enrolment Ratio in Higher education (18-23 years)",
+    "Disabled children (5-19 Years) attending educational institution",
+    "Proportion of trained teacher, by education level (elementary, secondary)",
+    "Percentage of schools with Pupil Teacher ratio less than/equal to 30",
+    "SDG 4 Index Score"
+  ],
+  "SDG 6 - Clean Water and Sanitation": [
+    "Percentage of households having improved source of drinking water",
+    "Percentage of rural households with individual household toilets",
+    "Percentage of urban households with individual household toilets",
+    "Percentage of districts verified to be ODF",
+    "Proportion of schools with separate toilet facility for girls",
+    "Percentage of industries (17 category of highly polluting industries/ grossly polluting/ red category of industries complying with waste water treatment as per CPCB norms.",
+    "Percentage of blocks over-exploited",
+    "SDG 6 Index Score"
+  ],
+  "SDG 8 - Decent Work and Economic Growth": [
+    "Annual growth rate of Net Domestic Product (NDP) per capita",
+    "Ease of doing business score (EODB)",
+    "Unemployment rate (%)",
+    "Labour Force Participation Rate (%)",
+    "Number of banking outlets per 1,00,000 population",
+    "Percentage of households with a bank account",
+    "Proportion of women account holders under PMJDY",
+    "SDG 8 Index Score"
+  ],
+  "SDG 9 - Industry, Innovation and Infrastructure": [
+    "Percentage of targeted habitations connected by all-weather roads under Pradhan Mantri Gram Sadak Yojana",
+    "Manufacturing employment as a proportion of total employment",
+    "Number of mobile connections per 100 persons in rural and urban area (Mobile Tele density)",
+    "Number of Internet subscribers per 100 population",
+    "SDG 9 Index Score"
+  ],
+  "SDG 10 - Reduced Inequality": [
+    "Growth rates of household expenditure  per capita among the bottom 40 per cent of the population in rural India",
+    "Growth rates of household expenditure  per capita among the bottom 40 per cent of the population in urban India",
+    "Gini Coefficient of Household Expenditure in Rural India",
+    "Gini Coefficient of Household Expenditure in Urban India",
+    "Proportion of seats held by women in Panchayati Raj Institutions",
+    "Proportion of SC/ST persons in state legislative assemblies",
+    "Ratio of transgender labour force participation rate to male labour force participation rate",
+    "Percentage of Scheduled Caste Sub Plan fund utilised",
+    "Percentage of Tribal Sub Plan fund utilised",
+    "SDG 10 Index Score"
+  ],
+  "SDG 16 - Peace and Justice Strong Institutions": [
+    "Reported murders per 1 lakh population",
+    "Proportion of population subjected to physical, psychological or sexual violence in the previous 12 months",
+    "Reported cognizable crimes against children per 1 lakh population",
+    "Number of victims of human trafficking per 100,000 population, by sex, age and form of exploitation",
+    "Estimated number of courts per 10 Lakh persons",
+    "Cases Reported under Prevention of Corruption Act & Related Sections of IPC per 100,000 population",
+    "Percentage of births registered",
+    "Percentage of population covered under Aadhaar",
+    "SDG 16 Index Score"
+  ]
+}
