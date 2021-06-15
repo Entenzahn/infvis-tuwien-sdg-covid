@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>InfoVis UE 2021</title>
+    <title>SDG India & Covid Dashboard</title>
 
     <link rel="stylesheet" type="text/css" href="static/styles/style.css">
 
@@ -70,20 +70,15 @@
     </div> -->
 </div>
 <div id="treatise">
-    <h2>ToDo</h2>
-    <p>
-        <ul>
-            <li>Add our hypothesis explanations</li>
-        </ul>
-    </p>
     <h2>Hypothesis</h2>
     <p>Newspapers describe the major difficulties of the Indian country to deal with the global crisis. Brookings Institution points out India as the top one country where extreme poverty is likely to increase the most with the current health crises. We study the Indian population, by looking into the Sustainable Development Goals (SDG) Index Scores designed by the United Nations. They give us information on Indian states situation with regard to several domains. We focus on the test and vaccination campaigns, and their development per state inside different groups of people and over time for studying the Covid-19 outbreak The SDG India Index data was provided by the Aayog National Institution for Transforming India and the Covid-19 data was found in Kaggle, in one users dataset processed with data from the Ministry of Health and Family Welfare and covid19india.org website that uses the most recent numbers provided in state bulletins. We wanted to find out if there might be a correlation between how Indian states score, is it good or bad for one SDG indicator and how it is able to manage the health crisis over time. We thought that the initial poverty of one state could have an influence. With this tool one can play to find out and generate other hypotheses.</p>
     <h2>Preprocessing</h2>
-    <p>Data was preprocessed using the pandas framework and is done dynamically by joining our various data-tables across a custom-made ID-table that maps our various dataframe entries to the state's ID name for backend processing. Since the tool handles null-values we are using the entire data-frame, only filtering out some indicators for presentation. Generally it should work with all SDG indicators, except #14 for which there is limited data and which has therefore been removed from the dataset entirely.</p>
+    <p>Data was preprocessed using the pandas framework and is done dynamically by joining our various data-tables across a custom-made ID-table that maps our various dataframe entries to the state's ID name for backend processing. Since the tool handles null-values we are using the entire data-frame, only filtering out some indicators for presentation. Generally it should work with all SDG indicators, except #14 for which there is limited data and which has therefore been removed from the dataset entirely. It was important for us to handle data dynamically so this tool could potentially be reused to analyze other parts of the world, and so it would be maintainable as far as updates to the data sources go. In the end we decided to remove a large part of our initial date range to reach a more consistent presentation version, but for instance null value handling is taken care of across all of our various visualization methods.</p>
     <h2>Development</h2>
-    <p>Two ideas for analysis perhaps: predicting full vaccination saturation or something akin to chi-square computation to filter out the SDG factors on which covid performance (such as vaccination rate) is most dependent.</p>
+    <p>Choice was made to use d3 for data processing since it would allow us high granularity of control over the various elements. We were clear that we would need quite a few interlinked and interactive elements to model the complex relationship between our static choropleth map and the various covid-related time series datasets for each state. In the end, the decision was to juxtapose choropleth map information with a horizontal bar chart modeling the distribution of covid progress across the various states. By adding the SDG color coding to our bar chart we were able to quickly draw visual conclusions from looking at where similar groupings occurred, e.g. where well-performing states would also show comparatively good progress in their vaccination process. With the dynamic loading and processing of the many data points we have collected we were thus able to correlate a wide range of values for our visual exploration process and draw conclusions accordingly. We furthermore added in a couple control options (e.g. scale by all-time range, scale by relative population size) but decided to leave them in for the end presentation as we realized that interacting with the data in such a manner created more engagement even for us.</p>
     <h2>Analysis</h2>
-    <p>Two ideas for analysis perhaps: predicting full vaccination saturation or something akin to chi-square computation to filter out the SDG factors on which covid performance (such as vaccination rate) is most dependent.</p>
+    <p>By looking at all possible combinations of the SDG dimensions with the total number of individuals vaccinated, we couldn’t conclude a clear correlation between poverty and vaccination progress. The SDG index score related to poverty is not the one having the biggest influence on how states manage to deal with the crisis according to the analysis. Examining the evolution of vaccination over time for this indicator nevertheless shows that states that score better for the “No poverty” index do vaccinate their population first and more quickly.
+For the other SDG index scores, “Quality education" (SDG index score 4) stands out. States that are “more educated” vaccinate more. Its “Percentage of children in the age group 6-13 years who are out of school” indicator describes states with the highest number of out-of-school children, as having a lower vaccination rate. One can argue why this might be linked to poverty too. We also noted that some states with very small areas often return extreme results compared to others.</p>
 </div>
 
 <script>
