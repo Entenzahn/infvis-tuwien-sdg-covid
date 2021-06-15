@@ -26,6 +26,92 @@ function initMap() {
             .attr('stroke', 'white')
             .attr('stroke-width', 0.5);
 
+        //Initiate legend
+
+    let color_scale = d3.scaleLinear()
+                    .domain([0, 100])
+                    .range(["#EEEEEE","#000080"])
+
+         let w = 300, h = 50;
+
+    let key = d3.select("#svg2")
+      .append("svg")
+      .classed("map_legend",true)
+      .attr("width", w)
+      .attr("height", h*2)
+      .attr("y",30)
+      .attr("x",300);
+
+    key.append("text")
+      .attr("y", 22)
+      .attr("x",15)
+      .attr("dy", ".71em")
+      .append("svg:tspan")
+      .attr("x",15)
+      .attr("y",22)
+      .text("Heatmap is based on SDG-indexed values")
+      .attr("font-size","0.66em")
+      .append("svg:tspan")
+      .attr("x",15)
+      .attr("dy",13)
+      .text("for each selected indicator")
+
+    let legend = key.append("defs")
+      .append("svg:linearGradient")
+      .attr("id", "map_gradient")
+      .attr("x1", "0%")
+      .attr("y1", "100%")
+      .attr("x2", "100%")
+      .attr("y2", "100%")
+      .attr("spreadMethod", "pad");
+
+    legend.append("stop")
+      .attr("offset", "0%")
+      .attr("stop-color", color_scale(100))
+      .attr("stop-opacity", 1);
+
+    legend.append("stop")
+      .attr("offset", "33%")
+      .attr("stop-color", color_scale(66.6))
+      .attr("stop-opacity", 1);
+
+    legend.append("stop")
+      .attr("offset", "66%")
+      .attr("stop-color", color_scale(33.3))
+      .attr("stop-opacity", 1);
+
+    legend.append("stop")
+      .attr("offset", "100%")
+      .attr("stop-color", color_scale(0))
+      .attr("stop-opacity", 1);
+
+    key.append("rect")
+      .attr("width", w-30)
+      .attr("x",15)
+      .attr("y",h-5)
+      .attr("height", h - 30)
+      .style("fill", "url(#map_gradient)")
+      .attr("transform", "translate(0,10)");
+
+    let y = d3.scaleLinear()
+      .range([285, 15])
+      .domain([0, 100]);
+
+    let yAxis = d3.axisBottom()
+      .scale(y)
+      .ticks(8);
+
+    key.append("g")
+      .attr("class", "y axis")
+      .attr("transform", "translate(0,"+(h+25)+")")
+      .call(yAxis)
+      .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("axis title");
+
         // Displays the first heatmap in the beginning
         let sdg_ind = sdg_dropdown.property("value");
         updateMap(sdg_ind);
@@ -37,7 +123,6 @@ function updateMap(sdg_activated){
     // Scaling variables for the choropleth map
     if(!sdg_activated.match('SDG \\d+ Index Score')){
         sdg_activated = sdg_activated+" (Index)"
-        console.log(sdg_activated)
     }
     let sdg_activated_values = sdg_data[sdg_activated];
     max_val = d3.max(d3.entries(sdg_activated_values),function(d){return d.value})
@@ -60,13 +145,15 @@ function updateMap(sdg_activated){
     // Creates the heatmap
     d3.select("#svg_map").select("#svg2").selectAll("path")
         .attr("fill", function(d){
-                val = sdg_activated_values[this.id]
-                if(val == null){
-                    return "black";
-                } else {
-                    //return "#FF9933"
-                    return color_scale(sdg_activated_values[this.id])
-                }
+                if(this.id!=""){
+                    val = sdg_activated_values[this.id]
+                    if(val == null){
+                        return "black";
+                    } else {
+                        //return "#FF9933"
+                        return color_scale(sdg_activated_values[this.id])
+                    }
+                } else return null
             })
         /*.attr("fill-opacity",function(d){
             val = sdg_activated_values[this.id]

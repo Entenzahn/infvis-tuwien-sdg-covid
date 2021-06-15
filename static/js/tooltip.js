@@ -27,11 +27,39 @@ function updateTooltip(id){
     let sdg_ind = sdg_dropdown.property("value")
     let cov_ind = covid_dropdown.property("value")
     let end_date = date_slider.property("value")
+    tmp = build_dict(sdg_ind, cov_ind, end_date)
+    let isPerPop = d3.select("#vertCompPerPop").property("checked")
 
-    let cov_val = covid_data[id].filter(function(d){return d.DateUNIX.getTime()==end_date.getTime()})[0][cov_ind] //ToDo: fix this
+    vert_dict = tmp[0]
+    min_val = tmp[1]
+    max_val = tmp[2]
 
-    d3.select("p.sdg-tooltip").text(sdg_ind +": "+sdg_data[sdg_ind][id])
-    d3.select("p.cov-tooltip").text(cov_ind +": "+d3.format(',')(cov_val))
+    let sdg_val = vert_dict[id][sdg_ind]
+    let cov_val = vert_dict[id][cov_ind]
 
-
+    d3.select("p.sdg-tooltip").html(function(){
+        if(sdg_val == null){
+            return "No value for " + sdg_ind;
+        } else {
+            if(!sdg_ind.match('SDG \\d+ Index Score')){
+                let sdg_ind_index = sdg_ind + " (Index)"
+                tmp = build_dict(sdg_ind_index, cov_ind, end_date)
+                vert_dict_index = tmp[0]
+                let sdg_val_index = vert_dict_index[id][sdg_ind_index]
+               return sdg_ind +": "+sdg_val+"<br />"+"Index value: "+sdg_val_index;
+            }
+            return sdg_ind +": "+sdg_val;
+        }
+    });
+    d3.select("p.cov-tooltip").text(function(){
+        if(cov_val == null){
+            return "No value for " + cov_ind;
+        } else {
+            if(isPerPop){
+                return cov_ind +": "+d3.format(',.2f')(cov_val)+" (per 100,000 citizens)";
+            } else {
+                return cov_ind +": "+d3.format(',')(cov_val);
+            }
+        }
+    });
 }

@@ -3,8 +3,6 @@ var vertCompare_width = 0;
 var vertCompare_margin = {};
 var vertCompare_height = 0;
 
-//ToDo: Show numbers, highlight null values
-
 function build_dict(sdg_ind, cov_ind, end_date){
     let vert_dict = {};
     let min_val = null;
@@ -23,7 +21,7 @@ function build_dict(sdg_ind, cov_ind, end_date){
                 //No recording of day
                 vert_dict[state][cov_ind] = null
             } else {
-                if(isPerPop){
+                if(isPerPop && covid_data_days[0][cov_ind] != null){
                     vert_dict[state][cov_ind] = (covid_data_days[0][cov_ind]/pop_data[state])*100000
                 } else {
                     vert_dict[state][cov_ind] = covid_data_days[0][cov_ind]
@@ -78,6 +76,14 @@ function sortVertDict(isCovidSort, vert_dict, cov_ind, sdg_ind){
     if (isCovidSort){
         return d3.entries(vert_dict).sort((a,b) => d3.descending(a.value[cov_ind],b.value[cov_ind]))
     } else {
+        let sdg_ind = sdg_dropdown.property("value")
+        let cov_ind = covid_dropdown.property("value")
+        let end_date = date_slider.property("value")
+        if(!sdg_ind.match('SDG \\d+ Index Score')){
+            sdg_ind = sdg_ind+" (Index)"
+            tmp = build_dict(sdg_ind, cov_ind, end_date)
+            vert_dict = tmp[0]
+        }
         return d3.entries(vert_dict).sort((a,b) => d3.descending(a.value[sdg_ind],b.value[sdg_ind]))
     }
 }
@@ -164,33 +170,45 @@ function createVerticalComp(){
 
 
              let origY = y(d.key)
-             let origX = -2*(y.bandwidth())+18
+             let origX = -2*(y.bandwidth())+23
             d3.select(this)
             .append("text")
             .text(d.key)
             .attr("x",origX)
-            .attr("y",origY)
+            .attr("y",origY+1)
             .attr("width", y.bandwidth())
             .attr("height", y.bandwidth())
             .attr("font-size", y.bandwidth()/2)
+            .attr("text-anchor", "middle")
             .attr("transform", "rotate(90,"+origX+","+origY+")")
             .classed("vertComp_label",true)
 
-            d3.select(this)
+            /*d3.select(this)
             .append("text")
             .text(function(d){return d.value[cov_ind]})
             .attr("x",-(y.bandwidth()*2))
             .attr("y",function(d){return y(d.key)})
             .attr("width", y.bandwidth())
             .attr("height", y.bandwidth())
-            .classed("vertComp_number",true)
+            .classed("vertComp_number",true)*/
 
             d3.select(this)
             .append("rect")
-            .attr("x",x(0))
-            .attr("y",function(d){return y(d.key)})
-            .attr("width", vertCompare_width)
-            .attr("height", y.bandwidth())
+            .attr("x",5-(y.bandwidth()*2))
+            .attr("y",origY-1)
+            .attr("width", 1+y.bandwidth()/1.6)
+            .attr("height", y.bandwidth()-2)
+            .attr("stroke", "black")
+            .attr("fill-opacity",0)
+            //.attr("transform","translate(0,22)")
+            .classed("vertComp_decor",true)
+
+            d3.select(this)
+            .append("rect")
+            .attr("x",x(0)+1)
+            .attr("y",function(d){return y(d.key)+1})
+            .attr("width", vertCompare_width-2)
+            .attr("height", (y.bandwidth())-1)
             .classed("vertComp_overlay",true)
             .raise()
             .attr("opacity","0")
@@ -201,6 +219,8 @@ function createVerticalComp(){
         d3.select("#vertCompXRange").on("change",function(){updateVerticalCompXRange();updateScatterplotCovid();})
         d3.select("#vertCompSort").on("change",updateVerticalCompSort)
         d3.select("#vertCompPerPop").on("change",function(){updateVerticalCompPerPop();updateLinePlot("JK");updateScatterplotCovid();})
+
+        updateVerticalCompDate()
 }
 
 function updateVerticalCompSDG(){
@@ -232,11 +252,19 @@ function updateVerticalCompSDG(){
             if(!isCovidSort){
                 setTimeout(function(){d3.selectAll("#svg_state_compare g g[state="+d.key+"] > *").transition()
                 .duration(1000)
-                .attr("y",y(d.key))
                 .attr("transform", function(d){
                     if(d3.select(this).classed("vertComp_label")){
                         return "rotate(90,"+(-2*(y.bandwidth())+18)+","+y(d.key)+")"
                     } else {return null;}
+                })
+                .attr("y",function(){
+                    if(d3.select(this).classed("vertComp_decor")){
+                        return y(d.key)+1
+                    } else if (d3.select(this).classed("vertComp_label")){
+                        return parseInt(y(d.key)-2)
+                    } else {
+                        return y(d.key)
+                    }
                 })
                 },600);
             }
@@ -293,11 +321,20 @@ function updateVerticalCompPerPop(){
             vert_sort.forEach(function(d){
                 d3.selectAll("#svg_state_compare g g[state="+d.key+"] > *").transition()
                 .duration(1000)
-                .attr("y",y(d.key))
+
                 .attr("transform", function(d){
                     if(d3.select(this).classed("vertComp_label")){
                         return "rotate(90,"+(-2*(y.bandwidth())+18)+","+y(d.key)+")"
                     } else {return null;}
+                })
+                .attr("y",function(){
+                    if(d3.select(this).classed("vertComp_decor")){
+                        return y(d.key)+1
+                    } else if (d3.select(this).classed("vertComp_label")){
+                        return parseInt(y(d.key)-2)
+                    } else {
+                        return y(d.key)
+                    }
                 })
 
             })
@@ -360,17 +397,26 @@ function updateVerticalCompCovid(){
     d3.entries(vert_dict).forEach(function(d){
         let val = d.value[cov_ind]
         if(val === null){
-            d3.select("#svg_state_compare g g[state="+d.key+"] rect.vertComp_val").transition()
-            .duration(1000)
+            d3.select("#svg_state_compare g g[state="+d.key+"] rect.vertComp_val")
             .attr("width", 0)
             .attr("value",0)
             .attr("x",x(0))
+
+            d3.select("#svg_state_compare g g[state="+d.key+"] rect.vertComp_overlay")
+                .attr("fill","red")
+                .attr("opacity",1)
+                .attr("fill-opacity",0.5)
+                .attr("stroke","red")
         } else {
             d3.select("#svg_state_compare g g[state="+d.key+"] rect.vertComp_val").transition()
             .duration(1000)
             .attr("width", x(val))
             .attr("value",val)
-            .attr("x",x(0))}
+            .attr("x",x(0))
+
+            d3.select("#svg_state_compare g g[state="+d.key+"] rect.vertComp_overlay")
+            .attr("fill",null)
+            .attr("opacity",0)}
     })
 
     setTimeout(function(){
@@ -385,11 +431,20 @@ function updateVerticalCompCovid(){
             vert_sort.forEach(function(d){
                 d3.selectAll("#svg_state_compare g g[state="+d.key+"] > *").transition()
                 .duration(1000)
-                .attr("y",y(d.key))
+
                 .attr("transform", function(d){
                     if(d3.select(this).classed("vertComp_label")){
                         return "rotate(90,"+(-2*(y.bandwidth())+18)+","+y(d.key)+")"
                     } else {return null;}
+                })
+                .attr("y",function(){
+                    if(d3.select(this).classed("vertComp_decor")){
+                        return y(d.key)+1
+                    } else if (d3.select(this).classed("vertComp_label")){
+                        return parseInt(y(d.key)-2)
+                    } else {
+                        return y(d.key)
+                    }
                 })
 
             })
@@ -418,11 +473,20 @@ function updateVerticalCompSort(){
     vert_sort.forEach(function(d){
         d3.selectAll("#svg_state_compare g g[state="+d.key+"] > *").transition()
         .duration(1000)
-        .attr("y",y(d.key))
+
         .attr("transform", function(d){
             if(d3.select(this).classed("vertComp_label")){
                 return "rotate(90,"+(-2*(y.bandwidth())+18)+","+y(d.key)+")"
             } else {return null;}
+        })
+        .attr("y",function(){
+            if(d3.select(this).classed("vertComp_decor")){
+                return y(d.key)+1
+            } else if (d3.select(this).classed("vertComp_label")){
+                return parseInt(y(d.key)-2)
+            } else {
+                return y(d.key)
+            }
         })
 
     })
@@ -448,6 +512,7 @@ function updateVerticalCompDate(){
     //Generate linear scaling
     let x = getVertCompLinearScale(isTotalRange, total_max_val, max_val);
 
+
     d3.entries(vert_dict).forEach(function(d){
         let val = d.value[cov_ind]
         if(val === null){
@@ -457,7 +522,7 @@ function updateVerticalCompDate(){
             .attr("value",0)
             .attr("x",x(0))
 
-            d3.select("#svg_state_compare g g[state=TE] rect.vertComp_overlay")
+            d3.select("#svg_state_compare g g[state="+d.key+"] rect.vertComp_overlay")
                 .attr("fill","red")
                 .attr("opacity",1)
                 .attr("fill-opacity",0.5)
@@ -467,12 +532,15 @@ function updateVerticalCompDate(){
             d3.select("#svg_state_compare g g[state="+d.key+"] rect.vertComp_val")
             .attr("width", x(val))
             .attr("value",val)
-            .attr("x",x(0))}
+            .attr("x",x(0))
 
             d3.select("#svg_state_compare g g[state="+d.key+"] rect.vertComp_overlay")
             .attr("fill",null)
             .attr("opacity",0)
-        })
+        }
+
+
+    })
 
     /* Not sure I like the behaviour of having the records flip around while the user is still holding on to the button
     isCovidSort = d3.select("#vertCompSort").property("checked")

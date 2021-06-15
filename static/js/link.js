@@ -7,7 +7,10 @@ function highlightState(){
         .raise();
     d3.selectAll("#svg_state_compare g[state=" + s + "] .vertComp_val")
         .attr('fill', '#FF9933')
-        .attr('stroke-width', 2)
+        .raise();
+    d3.selectAll("#svg_state_compare g[state=" + s + "] .vertComp_overlay")
+        .attr('fill', '#FF9933')
+        .attr('stroke', '#FF9933')
         .raise();
     d3.selectAll("#svg_scatterplot circle[state=" + s + "]")
         .style('fill', '#FF9933')
@@ -45,6 +48,7 @@ function state_mouseout(){
     let sdg_ind = sdg_dropdown.property("value")
     let s = d3.select(this).attr("state");
     d3.select("#svg_state_compare g[state=" + s + "] .vertComp_val").attr("fill", "#138808");
+    d3.select("#svg_state_compare g[state=" + s + "] .vertComp_overlay").attr("fill", "red").attr("stroke","red");
     updateMap(sdg_ind)
     //d3.select("#svg_map path[state=" + s + "]").attr("fill", "white").attr("stroke-width", 0.5);
     d3.selectAll("#svg_scatterplot circle[state=" + s + "]").style('fill', '#000080');

@@ -46,8 +46,10 @@ function DateSlider(){
     max_dates = []
     d3.values(covid_data).forEach(function(d){max_dates.push(d[d.length-1].DateUNIX)})
 
-    min_date = new Date(Math.min.apply(null,min_dates))
-    max_date = new Date(Math.max.apply(null,max_dates))
+    /*min_date = new Date(Math.min.apply(null,min_dates))
+    max_date = new Date(Math.max.apply(null,max_dates))*/
+    min_date = new Date("2021-01-17")
+    max_date = new Date("2021-05-31")
 
     let margin = {top:0, right:50, bottom:0, left:50},
     width = 1200 -margin.left - margin.right,
@@ -65,7 +67,7 @@ function DateSlider(){
     let x = d3.scaleTime()
         .domain([min_date,max_date])
         .range([0, width])
-        .clamp(true);
+        .clamp(true)
 
     let slider = date_slider.append("g")
         .attr("class","slider")
@@ -88,7 +90,7 @@ function DateSlider(){
         .attr("class", "ticks")
         .attr("transform", "translate(0," + 18 + ")")
       .selectAll("text")
-        .data(x.ticks(10))
+        .data(x.ticks(5))
         .enter()
         .append("text")
         .attr("x", x)
