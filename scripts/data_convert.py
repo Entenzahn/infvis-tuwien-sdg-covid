@@ -44,12 +44,23 @@ delete_cols = ["States/UTs",
                "Percentage of children under age 5 years who are stunted",
                "Rice, wheat and coarse cereals produced annually per unit area (Kg/Ha)",
                "Gender Parity Index for Higher education (18-23 years)",
+               "Proportion of SC/ST persons in state legislative assemblies",
+               "Reported murders per 1 lakh population",
+               "Proportion of population subjected to physical, psychological or sexual violence in the previous 12 months",
+               "Reported cognizable crimes against children per 1 lakh population",
+               "Number of victims of human trafficking per 100,000 population, by sex, age and form of exploitation",
+               "Estimated number of courts per 10 Lakh persons",
+               "Cases Reported under Prevention of Corruption Act & Related Sections of IPC per 100,000 population ",
+               "Percentage of population covered under Aadhaar",
+               "Percentage of households with a bank account",
+               "Proportion of women account holders under PMJDY"
                ]
 
 # Read all sheets into dataframe and build select option dictionary
 l_sdg = list()
 
 #Build the entire dataframe + build the data structure for our dropdown menus
+
 for i in range(0, (len(sheet_names))):
     sn = sheet_names[i]
     l_sdg.append(readExcel(sn))
@@ -132,7 +143,7 @@ df_pop = df_pop.merge(df_statenames, left_on="State", right_on="Dataset name")
 df_pop.set_index(df_pop["ID name"])["Total Population(Projected 2020)"].to_json(r'../static/data/pop.json', indent=2)
 
 delete_cols_cov = ["ID name","DateUNIX","Sno","Time","ConfirmedIndianNational","ConfirmedForeignNational",
-                   "Transgender(Individuals Vaccinated)","Negative","Positive","Updated On","Date","State","State/UnionTerritory"]
+                   "Negative","Positive","Updated On","Date","State","State/UnionTerritory"]
 cov_select_dict = {"Vaccination data":[], "Testing data":[]}
 
 for c in df_inf.columns:

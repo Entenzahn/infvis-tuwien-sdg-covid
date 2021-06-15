@@ -53,7 +53,6 @@
     "Unemployment rate (%)",
     "Labour Force Participation Rate (%)",
     "Number of banking outlets per 1,00,000 population",
-    "Percentage of households with a bank account",
     "Proportion of women account holders under PMJDY",
     "SDG 8 Index Score"
   ],
@@ -70,21 +69,13 @@
     "Gini Coefficient of Household Expenditure in Rural India",
     "Gini Coefficient of Household Expenditure in Urban India",
     "Proportion of seats held by women in Panchayati Raj Institutions",
-    "Proportion of SC/ST persons in state legislative assemblies",
     "Ratio of transgender labour force participation rate to male labour force participation rate",
     "Percentage of Scheduled Caste Sub Plan fund utilised",
     "Percentage of Tribal Sub Plan fund utilised",
     "SDG 10 Index Score"
   ],
   "SDG 16 - Peace and Justice Strong Institutions": [
-    "Reported murders per 1 lakh population",
-    "Proportion of population subjected to physical, psychological or sexual violence in the previous 12 months",
-    "Reported cognizable crimes against children per 1 lakh population",
-    "Number of victims of human trafficking per 100,000 population, by sex, age and form of exploitation",
-    "Estimated number of courts per 10 Lakh persons",
-    "Cases Reported under Prevention of Corruption Act & Related Sections of IPC per 100,000 population",
     "Percentage of births registered",
-    "Percentage of population covered under Aadhaar",
     "SDG 16 Index Score"
   ]
 }

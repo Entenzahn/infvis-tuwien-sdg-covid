@@ -12,27 +12,32 @@ function load_data(){
         console.log(data)
         console.log(d3.entries(sdg_data))
         SDGDropdown();
-        initMap();
+        setTimeout(function(){
+            initMap();
 
-        d3.json("static/data/covid.json").then(function(data){
-            covid_data = data
-            console.log(data)
-            console.log(d3.entries(covid_data))
-            d3.values(covid_data)
-                .forEach(function(d){
-                    d.forEach(function(d2){
-                        d2.DateUNIX = new Date(d3.timeParse(d2.Date))
+            d3.json("static/data/covid.json").then(function(data){
+                covid_data = data
+                console.log(data)
+                console.log(d3.entries(covid_data))
+                d3.values(covid_data)
+                    .forEach(function(d){
+                        d.forEach(function(d2){
+                            d2.DateUNIX = new Date(d3.timeParse(d2.Date))
+                        })
                     })
-                })
-            CovidDropdown()
-            DateSlider()
-            createVerticalComp()
-            initScatterplot()
-            updateVerticalCompSDG();
-            tooltip = initTooltip()
-            generateLineChart(tooltip.select("#tooltip_trend"),"JK",400,150)
-            d3.select("#svg_map").node().style.marginLeft = scatterplotStageWidth+"px"
-        });
+                CovidDropdown()
+
+                DateSlider()
+                setTimeout(function(){
+                    createVerticalComp()
+                    initScatterplot()
+                    updateVerticalCompSDG();
+                    tooltip = initTooltip()
+                    generateLineChart(tooltip.select("#tooltip_trend"),"JK",400,150)
+                    d3.select("#svg_map").node().style.marginLeft = scatterplotStageWidth+"px"
+                },100);
+            });
+        },100)
 
     });
 

@@ -11,6 +11,8 @@ function initTooltip(){
     .classed("tooltip", true)
     .style("position","absolute")
     .style("visibility", "hidden")
+    .style("left",0)
+    .style("top",0)
 
     tooltip.append("h3");
     let inf = tooltip.append("div").attr("class","sdg_info")

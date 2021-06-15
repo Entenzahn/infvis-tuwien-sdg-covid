@@ -8,7 +8,7 @@ body {
 
 div#main{
     max-width:90%;
-    padding-left: 5em;
+    margin:auto;
 }
 
 div#treatise{
@@ -28,11 +28,38 @@ footer{
     width:100%;
     padding-left: 5em;
     color:#fff;
+    text-align:center;
+    padding-bottom:10px;
 }
+
+
+footer a{
+    color:#fff;
+    text-decoration:none
+}
+
+footer a:hover{
+    color:#fff;
+    text-decoration:underline
+}
+
+footer h4{
+    margin-bottom:2px
+}
+footer ul{
+    margin-top:2px
+}
+
+img.brightness:hover {  box-shadow: 0 0 10px #333;  -webkit-box-shadow: 0 0 10px #333;  -moz-box-shadow: 0 0 10px #333;  -o-box-shadow: 0 0 10px #333;  -ms-box-shadow: 0 0 10px #333;}
 
 #div_scatterplot_tmp{
     position:absolute;
     y:300px;
+}
+
+.ui_element_check{
+
+  cursor: pointer;
 }
 
 
@@ -89,6 +116,15 @@ footer{
     marker-end: url(#arrow-active);
 }
 
+header h1{
+    margin-top:8px;
+    margin-bottom:3px
+}
+
+header p{
+    margin-top:3px
+}
+
 .ticks {
   font-size: 10px;
 }
@@ -114,7 +150,7 @@ footer{
   pointer-events: stroke;
   stroke-width: 50px;
   stroke: transparent;
-  cursor: crosshair;
+  cursor: pointer;
 }
 
 .handle {
@@ -122,6 +158,14 @@ footer{
   stroke:#000080;
   stroke-opacity: 0.5;
   stroke-width: 1.25px;
+}
+
+.ui_element_check{
+    font-size: 0.7em;
+}
+
+#div_scatterplot_tmp {
+    text-align:left
 }
 
 .vertComp_label{
@@ -152,4 +196,96 @@ div.tooltip p{
     font-size: 0.8em;
     padding:0px;
     margin:0px;
+}
+
+ /* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 25px;
+  height: 14px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider_sort {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color:  #000080;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider_sort:before {
+  position: absolute;
+  content: "";
+  height: 12px;
+  width: 12px;
+  left: 2px;
+  bottom: 1px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider_sort {
+  background-color: #138808;
+}
+
+input:focus + .slider_sort {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider_sort:before {
+  -webkit-transform: translateX(9px);
+  -ms-transform: translateX(9px);
+  transform: translateX(9px);
+}
+
+/* Rounded sliders */
+.slider_sort.round {
+  border-radius: 34px;
+}
+
+.slider_sort.round:before {
+  border-radius: 50%;
+  text:"lol"
+}
+
+.vertBar .ui_element_check{
+    vertical-align:middle
+}
+
+.vertBar div.ui_element_check{
+    transform:translate(-2px,0px);
+    margin-bottom:5px;
+    margin-top:8px;
+
+}
+
+#selector_covid{
+
+    margin-left:5px;
+}
+
+footer img{
+    background:#fff;
+  border-radius: 5px;
+  margin-top:5px;
+  margin-bottom:5px;
+}
+
+footer p{
+    margin-top:5px;
+    margin-bottom:5px;
 }

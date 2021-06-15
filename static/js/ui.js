@@ -31,7 +31,7 @@ function SDGDropdown(){
     })
 }
 
-/*
+
 function CovidDropdown(){
 
     d3.json("static/data/covid_dropdown.json").then(function(data){
@@ -58,7 +58,7 @@ function CovidDropdown(){
         })
     })
 }
-*/
+/*
 function CovidDropdown(){
 
     covid_dropdown = d3.select("#selector_covid")
@@ -75,7 +75,7 @@ function CovidDropdown(){
     covid_dropdown.on("change", function(d) {
         activateCovid(d3.select(this).property("value"));
     })
-}
+}*/
 
 function DateSlider(){
     //Find mind and max dates:
@@ -94,7 +94,7 @@ function DateSlider(){
     width = 1200 -margin.left - margin.right,
     height = 80 - margin.top - margin.bottom;
 
-    let formatDateIntoMonth = d3.timeFormat("%m/%Y");
+    let formatDateIntoMonth = d3.timeFormat("%d %b");
     let formatDate = d3.timeFormat("%d %b %Y");
     let formatDateMEZ = d3.timeFormat("%Y-%m-%d");
 
@@ -129,19 +129,21 @@ function DateSlider(){
         .attr("class", "ticks")
         .attr("transform", "translate(0," + 18 + ")")
       .selectAll("text")
-        .data(x.ticks(5))
+        .data(x.ticks(10))
         .enter()
         .append("text")
         .attr("x", x)
         .attr("y", 10)
-        .attr("text-anchor", "middle")
+        .attr("text-anchor", "right")
+        .attr("transform",function(d){ let tmp = x; return "translate(-10,0) rotate(-30,"+x(d)+",20)"})
         .text(function(d) { return formatDateIntoMonth(d); });
 
     var label = slider.append("text")
         .attr("class", "label")
         .attr("text-anchor", "middle")
         .text(formatDate(min_date))
-        .attr("transform", "translate(0," + (-25) + ")")
+        .attr("transform", "translate(0," + (-15) + ")")
+        .attr("font-size","0.8em")
 
     var handle = slider.insert("circle", ".track-overlay")
         .attr("class", "handle")

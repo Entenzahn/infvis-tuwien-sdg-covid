@@ -29,8 +29,6 @@ function build_dict(sdg_ind, cov_ind, end_date){
                 min_val = Math.min(min_val, vert_dict[state][cov_ind])
                 max_val = Math.max(max_val, vert_dict[state][cov_ind])
 
-                /*IDIOT:min_val = Math.min(min_val, covid_data_days[0][cov_ind])
-                max_val = Math.max(max_val, covid_data_days[0][cov_ind])*/
             }
         }
     )
@@ -93,15 +91,15 @@ function createVerticalComp(){
     let cov_ind = covid_dropdown.property("value")
     let end_date = date_slider.property("value")
 
-    stageWidth = d3.select("#main").node().clientWidth*0.15;
+    stageWidth = d3.select("#main").node().clientWidth*0.20;
 
     tmp = build_dict(sdg_ind, cov_ind, end_date)
     vert_dict = tmp[0]
     min_val = tmp[1]
     max_val = tmp[2]
 
-    vertCompare_margin = {top: 20, right: 30, bottom: 80, left: 90};
-    vertCompare_width = 300 - vertCompare_margin.left - vertCompare_margin.right;
+    vertCompare_margin = {top: 20, right: 100, bottom: 80, left: 90};
+    vertCompare_width = 370 - vertCompare_margin.left - vertCompare_margin.right;
     vertCompare_height = 800 - vertCompare_margin.top - vertCompare_margin.bottom;
 
     isTotalRange = d3.select("#vertCompXRange").property("checked")
@@ -117,13 +115,6 @@ function createVerticalComp(){
     .attr("viewBox","0 0 "+ (vertCompare_width+vertCompare_margin.left+vertCompare_margin.right) + " "+(vertCompare_height+vertCompare_margin.top+vertCompare_margin.bottom))
     .append("g")
     .attr("transform", "translate("+vertCompare_margin.left+","+vertCompare_margin.top+")");
-
-    /*svg.append("g")
-    .attr("transform", "translate(0," + vertCompare_height + ")")
-    .call(d3.axisBottom(x))
-    .selectAll("text")
-      .attr("transform", "translate(-10,0)rotate(-45)")
-      .style("text-anchor", "end");*/
 
 
     isCovidSort = d3.select("#vertCompSort").property("checked")
@@ -144,7 +135,7 @@ function createVerticalComp(){
             .classed("vertComp_bar",true)
             .append("rect")
             .attr("x",x(0))
-            .attr("y",function(d){return y(d.key)})
+            .attr("y",function(d){return y(d.key)-2})
             .attr("width", function(d){
                 let val = d.value[cov_ind]
                 if(val === null){
@@ -162,7 +153,7 @@ function createVerticalComp(){
             d3.select(this)
             .append("rect")
             .attr("x",-(y.bandwidth())-2)
-            .attr("y",function(d){return y(d.key)})
+            .attr("y",function(d){return y(d.key)-2})
             .attr("width", y.bandwidth())
             .attr("height", y.bandwidth())
             .text(d.key)
@@ -180,17 +171,8 @@ function createVerticalComp(){
             .attr("height", y.bandwidth())
             .attr("font-size", y.bandwidth()/2)
             .attr("text-anchor", "middle")
-            .attr("transform", "rotate(90,"+origX+","+origY+")")
+            .attr("transform", "rotate(90,"+origX+","+origY+") translate(7,6)")
             .classed("vertComp_label",true)
-
-            /*d3.select(this)
-            .append("text")
-            .text(function(d){return d.value[cov_ind]})
-            .attr("x",-(y.bandwidth()*2))
-            .attr("y",function(d){return y(d.key)})
-            .attr("width", y.bandwidth())
-            .attr("height", y.bandwidth())
-            .classed("vertComp_number",true)*/
 
             d3.select(this)
             .append("rect")
@@ -215,6 +197,35 @@ function createVerticalComp(){
         }).on("mouseover",highlightState)
         .on('mouseout', state_mouseout)
         .on('mousemove',move_tooltip);
+
+        d3.selectAll("#svg_state_compare").append("g")
+        .append("line")
+        .attr("x1",vertCompare_width).attr("x2",vertCompare_width)
+        .attr("y1",vertCompare_margin.top).attr("y2",vertCompare_height+vertCompare_margin.top)
+        .style("stroke-dasharray","5,5").style("stroke","black")
+
+        d3.selectAll("#svg_state_compare").append("g")
+        .append("line")
+        .attr("x1",parseInt(vertCompare_width+vertCompare_margin.left)+1).attr("x2",parseInt(vertCompare_width+vertCompare_margin.left)+1)
+        .attr("y1",vertCompare_margin.top).attr("y2",vertCompare_height+vertCompare_margin.top)
+        .style("stroke-dasharray","5,5").style("stroke","black")
+
+        d3.selectAll("#svg_state_compare").append("g")
+        .attr("id","vertBar_note")
+        .append("rect")
+        .attr("x",vertCompare_width+vertCompare_margin.left+20)
+        .attr("y",vertCompare_margin.top+1)
+        .attr("width",y.bandwidth()-5)
+        .attr("height",y.bandwidth()-5)
+        .attr("fill","red")
+        .attr("fill-opacity",0.5)
+        .attr("stroke","red")
+        d3.select("#vertBar_note")
+        .append("text")
+        .attr("font-size","0.75em")
+        .attr("x",vertCompare_width+vertCompare_margin.left+y.bandwidth()+22)
+        .attr("y",vertCompare_margin.top+12)
+        .text("No data")
 
         d3.select("#vertCompXRange").on("change",function(){updateVerticalCompXRange();updateScatterplotCovid();})
         d3.select("#vertCompSort").on("change",updateVerticalCompSort)
@@ -340,6 +351,19 @@ function updateVerticalCompPerPop(){
             })
         }
     },1100)
+    svg = d3.select("#svg_state_compare g")
+    // Removes the y axis
+    svg.selectAll(".axis_x").remove();
+    let mtmp = 0;
+    if(isTotalRange){
+        mtmp = total_max_val
+    } else {
+        mtmp = max_val
+    }
+    // Re-adds the y axis again
+    svg.append("g")
+        .classed("axis_x",true)
+        .call(d3.axisTop(x).tickValues([0, mtmp/2,mtmp]));
 }
 
 function updateVerticalCompXRange(){
@@ -375,6 +399,19 @@ function updateVerticalCompXRange(){
             .attr("value",val)
             .attr("x",x(0))}
         })
+    svg = d3.select("#svg_state_compare g")
+    // Removes the y axis
+    svg.selectAll(".axis_x").remove();
+    let mtmp = 0;
+    if(isTotalRange){
+        mtmp = total_max_val
+    } else {
+        mtmp = max_val
+    }
+    // Re-adds the y axis again
+    svg.append("g")
+        .classed("axis_x",true)
+        .call(d3.axisTop(x).tickValues([0, mtmp/2,mtmp]));
 
 }
 
@@ -450,6 +487,19 @@ function updateVerticalCompCovid(){
             })
         }
     },1100)
+    svg = d3.select("#svg_state_compare g")
+    // Removes the y axis
+    svg.selectAll(".axis_x").remove();
+    let mtmp = 0;
+    if(isTotalRange){
+        mtmp = total_max_val
+    } else {
+        mtmp = max_val
+    }
+    // Re-adds the y axis again
+    svg.append("g")
+        .classed("axis_x",true)
+        .call(d3.axisTop(x).tickValues([0, mtmp/2,mtmp]));
 }
 
 function updateVerticalCompSort(){
@@ -538,9 +588,16 @@ function updateVerticalCompDate(){
             .attr("fill",null)
             .attr("opacity",0)
         }
-
-
     })
+    svg = d3.select("#svg_state_compare g")
+    // Removes the y axis
+    svg.selectAll(".axis_x").remove();
+
+    let mtmp = d3.max([total_max_val,max_val])
+    // Re-adds the y axis again
+    svg.append("g")
+        .classed("axis_x",true)
+        .call(d3.axisTop(x).tickValues([0, mtmp/2,mtmp]));
 
     /* Not sure I like the behaviour of having the records flip around while the user is still holding on to the button
     isCovidSort = d3.select("#vertCompSort").property("checked")

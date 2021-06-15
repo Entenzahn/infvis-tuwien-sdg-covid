@@ -1,10 +1,17 @@
 function highlightState(){
     let s = d3.select(this).attr("state")
+    if (s=="LD"){
+        d3.selectAll("#svg_map path[state=" + s + "]")
+        .attr("stroke","#FF9933")
+        .attr("stroke-width",2)
+        .raise();
+    } else {
     d3.selectAll("#svg_map path[state=" + s + "]")
         .attr("fill","#FF9933")
+        .raise();
+    }
         //.attr('stroke', 'green')
         //.attr('stroke-width', 2)
-        .raise();
     d3.selectAll("#svg_state_compare g[state=" + s + "] .vertComp_val")
         .attr('fill', '#FF9933')
         .raise();

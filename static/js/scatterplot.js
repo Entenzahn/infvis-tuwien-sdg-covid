@@ -1,4 +1,43 @@
 // Sets the dimensions and margins of the graph
+
+/*
+Credit for wrap() to
+https://stackoverflow.com/questions/24784302/wrapping-text-in-d3?lq=1
+*/
+function wrap(text, width) {
+    text.each(function () {
+        var text = d3.select(this),
+            words = text.text().split(/\s+/).reverse(),
+            word,
+            line = [],
+            lineNumber = 0,
+            lineHeight = 1.1, // ems
+            x = text.attr("x"),
+            y = text.attr("y"),
+            dy = 0, //parseFloat(text.attr("dy")),
+            tspan = text.text(null)
+                        .append("tspan")
+                        .attr("x", x)
+                        .attr("y", y)
+                        .attr("dy", dy + "em");
+        while (word = words.pop()) {
+            line.push(word);
+            tspan.text(line.join(" "));
+            if (tspan.node().getComputedTextLength() > width) {
+                line.pop();
+                tspan.text(line.join(" "));
+                line = [word];
+                tspan = text.append("tspan")
+                            .attr("x", 0)
+                            .attr("y", y)
+                            .attr("dy", ++lineNumber * lineHeight + dy + "em")
+                            .text(word);
+            }
+        }
+    });
+}
+
+
 var scatterplotWidth;
 var scatterplotHeight;
 var scatterplotStageWidth;
@@ -7,9 +46,9 @@ function initScatterplot() {
     scatterplotStageWidth = d3.select("#main").node().clientWidth*0.20;
     let map_height = d3.select("#svg_map").node().clientHeight;
 
-    let margin = {top: 10, right: 30, bottom: 30, left: 60};
+    let margin = {top: 10, right: 30, bottom: 160, left: 60};
     scatterplotWidth = 400 - margin.left - margin.right;
-    scatterplotHeight = 340 - margin.top - margin.bottom;
+    scatterplotHeight = 440 - margin.top - margin.bottom;
 
     let sdg_ind = sdg_dropdown.property("value"),
         cov_ind = covid_dropdown.property("value");
@@ -19,14 +58,14 @@ function initScatterplot() {
         .attr("width", scatterplotStageWidth)// + margin.left + margin.right)
         //.attr("height", scatterplotHeight + margin.top + margin.bottom)
         .attr("viewBox","0 0 "+(scatterplotWidth+ margin.left + margin.right)+" "+(scatterplotHeight+ margin.top + margin.bottom))
-        .attr("transform", "translate(0,"+(map_height-scatterplotHeight)+")")
+        .attr("transform", "translate(0,"+(map_height-scatterplotHeight-margin.bottom+40)+")")
       .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     //console.log(sdg_ind, cov_ind);
 
     // Add X axis
-    min_ind = -10,
+    min_ind = 0,
     max_ind = 100;
 
     var x = d3.scaleLinear()
@@ -65,6 +104,14 @@ function initScatterplot() {
           .on('mouseout', state_mouseout)
           .on('mousemove',move_tooltip);
 
+    svg.append("g")
+        .attr("id","scatterplot_footnote")
+        .append("text")
+        .attr("font-size","0.75em")
+        .attr("y",scatterplotHeight+35)
+        .text("test")
+        .call(wrap,scatterplotWidth,"test")
+
     //console.log(d3.keys(covid_data));
 
     updateScatterplotSDG(sdg_ind);
@@ -75,6 +122,11 @@ function updateScatterplotSDG(sdg_activated){
     let sdg_ind = sdg_dropdown.property("value")
     let cov_ind = covid_dropdown.property("value")
     let end_date = date_slider.property("value")
+    tmp = build_dict(sdg_ind, cov_ind, end_date)
+
+    vert_dict = tmp[0]
+    min_val = tmp[1]
+    max_val = tmp[2]
 
 
     if(!sdg_activated.match('SDG \\d+ Index Score')){
@@ -86,7 +138,7 @@ function updateScatterplotSDG(sdg_activated){
     let sdg_activated_values = sdg_data[sdg_activated];
     /*min_val = d3.min(d3.entries(sdg_activated_values),function(d){return d.value});
     max_val = d3.max(d3.entries(sdg_activated_values),function(d){return d.value});*/
-    min_val = -10
+    min_val = 0
     max_val = 100
 
     let svg = d3.select("#svg_scatterplot g");
@@ -104,16 +156,29 @@ function updateScatterplotSDG(sdg_activated){
         .attr("transform", "translate(0," + scatterplotHeight + ")")
         .call(d3.axisBottom(x));*/
 
+    let missing_states = []
+
     svg.selectAll("circle").each(function(d){
         let c = d3.select(this)
         let s = c.attr("state")
         val = sdg_activated_values[s]
-
-        c.attr("cx",x(val))
+        if (val != null && vert_dict[s][cov_ind] != null){
+            c.attr("visibility","visible").attr("cx",x(val))
+        } else {
+            c.attr("visibility","hidden")
+            state_name = sdg_data["States/UTs"][s]
+            missing_states.push(state_name)
+        }
     })
 
-    //ToDo push null values into -5 area
-    //d3.select("#svg_scatterplot").select(".axis_x").selectAll("text").filter(function(d){return d=="-10"}).text("No data")
+    textbox = d3.select("#scatterplot_footnote text")
+    if(missing_states.length == 0){
+       textbox.text("")
+    } else{
+        textbox.text("Missing values for: "+missing_states.join(", "))
+        .call(wrap,scatterplotWidth)
+    }
+
 }
 
 function updateScatterplotCovid(){
@@ -151,18 +216,27 @@ function updateScatterplotCovid(){
         .classed("axis_y",true)
         .call(d3.axisLeft(y));
 
+    let missing_states = []
+
     svg.selectAll("circle").each(function(d){
         let c = d3.select(this)
         let s = c.attr("state")
         val = vert_dict[s][cov_ind]
-
-        c.attr("cy",y(val))
+        if (val != null && sdg_data[sdg_ind][s] != null){
+            c.attr("visibility","visible").attr("cy",y(val))
+        } else {
+            c.attr("visibility","hidden")
+            state_name = sdg_data["States/UTs"][s]
+            missing_states.push(state_name)
+        }
     })
 
-    /*d3.entries(covid_data).forEach(function(d){
-        let state = d.key;
-        d.value.forEach(function(d){
-                val = d[cov_ind]
-                console.log(val)})})*/
+    textbox = d3.select("#scatterplot_footnote text")
+    if(missing_states.length == 0){
+       textbox.text("")
+    } else{
+        textbox.text("Missing values for: "+missing_states.join(", "))
+        .call(wrap,scatterplotWidth)
+    }
 
 }

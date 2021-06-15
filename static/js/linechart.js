@@ -74,6 +74,17 @@ function generateLineChart(element, id, w, h){
                 }
             })
         )
+
+        if(curr_date >= min_date && curr_date <= max_date){
+        let ind_width = 2
+            svg.append("rect")
+                .classed("date-indicator",true)
+                .attr("x",x(curr_date)-(ind_width/2))
+                .attr("width",ind_width)
+                .attr("y",y(max_data))
+                .attr("height",height)
+                .attr("fill","#FF9933")
+        }
 }
 
 function updateLinePlot(id){
@@ -117,23 +128,25 @@ function updateLinePlot(id){
         .domain([0,max_data])
         .range([height, 0])
 
-    if(dateHasChanged && curr_date >= min_date && curr_date <= max_date){
+    if(dateHasChanged){
     let ind_width = 2
     svg.selectAll(".date-indicator").remove()
 
-    svg.append("rect")
-        .classed("date-indicator",true)
-        .attr("x",x(curr_date)-(ind_width/2))
-        .attr("width",ind_width)
-        .attr("y",y(max_data))
-        .attr("height",height)
-        .attr("fill","#FF9933")
+        if(curr_date >= min_date && curr_date <= max_date){
+            svg.append("rect")
+                .classed("date-indicator",true)
+                .attr("x",x(curr_date)-(ind_width/2))
+                .attr("width",ind_width)
+                .attr("y",y(max_data))
+                .attr("height",height)
+                .attr("fill","#FF9933")
+        }
     svg.attr("date", curr_date.getTime())
     } else if (stateHasChanged || covIndHasChanged || perPopHasChanged){
 
         svg.selectAll(".axis").remove()
-        svg.append("g").classed("axis",true).attr("transform","translate(0,"+height+")").call(d3.axisBottom(x).ticks(10))
-        svg.append("g").classed("axis",true).call(d3.axisLeft(y).ticks(10))
+        svg.append("g").classed("axis",true).attr("transform","translate(0,"+height+")").call(d3.axisBottom(x).ticks(3))
+        svg.append("g").classed("axis",true).call(d3.axisLeft(y).ticks(3))
 
         svg.select(".trend-plot").datum(data).transition().duration(1000)
         .attr("d", d3.area()

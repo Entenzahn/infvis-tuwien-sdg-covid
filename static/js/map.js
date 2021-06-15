@@ -12,8 +12,6 @@ function initMap() {
 
         // Selects the div for the map
         d3.select("#svg_map")
-            //.attr("width", mapWidth) // Scales the svg container
-            //.attr("height", mapHeight) // Scales the svg container
             .node().append(data.documentElement) // Attaches the xml data to the div
 
         // Styles the SVG path
@@ -38,7 +36,7 @@ function initMap() {
       .append("svg")
       .classed("map_legend",true)
       .attr("width", w)
-      .attr("height", h*2)
+      .attr("height", h*2+50)
       .attr("y",30)
       .attr("x",300);
 
@@ -67,22 +65,22 @@ function initMap() {
 
     legend.append("stop")
       .attr("offset", "0%")
-      .attr("stop-color", color_scale(100))
+      .attr("stop-color", color_scale(0))
       .attr("stop-opacity", 1);
 
     legend.append("stop")
       .attr("offset", "33%")
-      .attr("stop-color", color_scale(66.6))
-      .attr("stop-opacity", 1);
-
-    legend.append("stop")
-      .attr("offset", "66%")
       .attr("stop-color", color_scale(33.3))
       .attr("stop-opacity", 1);
 
     legend.append("stop")
+      .attr("offset", "66%")
+      .attr("stop-color", color_scale(66.6))
+      .attr("stop-opacity", 1);
+
+    legend.append("stop")
       .attr("offset", "100%")
-      .attr("stop-color", color_scale(0))
+      .attr("stop-color", color_scale(100))
       .attr("stop-opacity", 1);
 
     key.append("rect")
@@ -95,7 +93,7 @@ function initMap() {
 
     let y = d3.scaleLinear()
       .range([285, 15])
-      .domain([0, 100]);
+      .domain([100, 0]);
 
     let yAxis = d3.axisBottom()
       .scale(y)
@@ -111,6 +109,20 @@ function initMap() {
       .attr("dy", ".71em")
       .style("text-anchor", "end")
       .text("axis title");
+
+      let note = key.append("g")
+        .attr("class","note")
+      key.append("rect")
+        .attr("y",h*2+10)
+        .attr("x",15)
+        .attr("width",10)
+        .attr("height",10)
+      key.append("text")
+        .attr("y",h*2+19)
+        .attr("x",30)
+        .text("No data")
+        .attr("font-size","0.7em")
+        .attr("vertical_align","bottom")
 
         // Displays the first heatmap in the beginning
         let sdg_ind = sdg_dropdown.property("value");
@@ -155,14 +167,13 @@ function updateMap(sdg_activated){
                     }
                 } else return null
             })
-        /*.attr("fill-opacity",function(d){
+        .attr("stroke",function(d){
             val = sdg_activated_values[this.id]
-            if(val == null){
-                    return 1;
-                } else {
-                    return color_scale(val)
-                }
-            })*/
+            if(this.id == "LD"){
+                    return color_scale(sdg_activated_values[this.id])
+                } else return "white";
+            })
+        .attr("stroke-width",0.5)
         .attr("state",function(){return this.id})
         // Adds hovering events
         .on("mouseover",highlightState)

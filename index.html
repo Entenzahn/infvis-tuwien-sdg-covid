@@ -23,6 +23,7 @@
 
 <header>
     <h1>Influence of Indian Social Conditions to Address the Covid Crisis</h1>
+    <p>Mapping SDG Index Scores across Indian Covid statistics</p>
 </header>
 
 <div id="main">
@@ -35,14 +36,14 @@
         <div id="selector_covid">
             <select></select>
         </div>
-        <input type="checkbox" id="vertCompPerPop">
-        <label for="vertCompPerPop"> Per 100,000 citizens</label><br>
-        <input type="checkbox" id="vertCompXRange">
-        <label for="vertCompXRange"> Compare against all-time total</label><br>
     </div>
     <!-- Choropleth map for SDG indicator -->
     <div class="container map">
         <div id="div_scatterplot_tmp">
+        <input class="ui_element_check" type="checkbox" id="vertCompPerPop">
+        <label class="ui_element_check" for="vertCompPerPop"> Per 100,000 citizens</label><br>
+        <input class="ui_element_check" type="checkbox" id="vertCompXRange">
+        <label class="ui_element_check" for="vertCompXRange"> Compare against all-time total</label><br>
             <svg id="svg_scatterplot"></svg>
         </div>
         <div id="svg_map"></div>
@@ -50,8 +51,12 @@
 
     <!-- State comparison for covid indicator -->
     <div class="container vertBar">
-        <input type="checkbox" id="vertCompSort">
-        <label for="vertCompSort"> Sort by Covid indicator</label><br>
+        <div class="ui_element_check">SDG 
+        <label class="switch ui_element_check">
+            <input type="checkbox" class="ui_element_check" id="vertCompSort">
+            <span class="slider_sort"></span>
+        </label> Covid
+        </div>
         <svg id="svg_state_compare"></svg>
     </div>
 
@@ -68,26 +73,13 @@
     <h2>ToDo</h2>
     <p>
         <ul>
-            <li>Finish dropdowns:<ul><li>Pick SDG and Covid values</li>
-            <li>Selector: change index name to "No hunger etc"</li>
-                <li>Arrange and style checkboxes/dropdowns</li></ul></li>
-            <li>Highlight null values on scatter plot</li>
-            <li>Fix slider current date display</li>
-            <li>Display numbers at horizontal bar chart</li>
             <li>Add our hypothesis explanations</li>
-            <li>There is a bug where the bar chart labels jump, only in firefox. Present in Chrome if I can't fix it.</li>
-            <li><b>Likely not possible:</b><ul>
-            <li>Consistent line ticks for linechart and scatterplot</li>
-            <li>Bugfix tooltip positioning</li>
-            <li>Brighter green in the bar chart and time slider</li>
-            <li>Highlight null values on line chart</li>
-            <li>Legend for line and bar chart</li></ul></li>
         </ul>
     </p>
-    <h2>Hypothesis & Data Sources</h2>
-    <p>Two ideas for analysis perhaps: predicting full vaccination saturation or something akin to chi-square computation to filter out the SDG factors on which covid performance (such as vaccination rate) is most dependent.</p>
+    <h2>Hypothesis</h2>
+    <p>Newspapers describe the major difficulties of the Indian country to deal with the global crisis. Brookings Institution points out India as the top one country where extreme poverty is likely to increase the most with the current health crises. We study the Indian population, by looking into the Sustainable Development Goals (SDG) Index Scores designed by the United Nations. They give us information on Indian states situation with regard to several domains. We focus on the test and vaccination campaigns, and their development per state inside different groups of people and over time for studying the Covid-19 outbreak The SDG India Index data was provided by the Aayog National Institution for Transforming India and the Covid-19 data was found in Kaggle, in one users dataset processed with data from the Ministry of Health and Family Welfare and covid19india.org website that uses the most recent numbers provided in state bulletins. We wanted to find out if there might be a correlation between how Indian states score, is it good or bad for one SDG indicator and how it is able to manage the health crisis over time. We thought that the initial poverty of one state could have an influence. With this tool one can play to find out and generate other hypotheses.</p>
     <h2>Preprocessing</h2>
-    <p>Two ideas for analysis perhaps: predicting full vaccination saturation or something akin to chi-square computation to filter out the SDG factors on which covid performance (such as vaccination rate) is most dependent.</p>
+    <p>Data was preprocessed using the pandas framework and is done dynamically by joining our various data-tables across a custom-made ID-table that maps our various dataframe entries to the state's ID name for backend processing. Since the tool handles null-values we are using the entire data-frame, only filtering out some indicators for presentation. Generally it should work with all SDG indicators, except #14 for which there is limited data and which has therefore been removed from the dataset entirely.</p>
     <h2>Development</h2>
     <p>Two ideas for analysis perhaps: predicting full vaccination saturation or something akin to chi-square computation to filter out the SDG factors on which covid performance (such as vaccination rate) is most dependent.</p>
     <h2>Analysis</h2>
@@ -99,12 +91,16 @@
 </script>
 
 <footer>
-    <p>Philipp Piwonka - 12002294</p>
-    <p>Alice Martzloff - 12041022</p>
-    Data sources:
-    Indian population estimate for 2020: https://uidai.gov.in/
-    Covid numbers:
-    SDG numbers:
+    <p><a href="https://github.com/Entenzahn/infvis-tuwien-sdg-covid">
+         <img class="brightness" alt="Project repository" src="/static/styles/GitHub-Mark-32px.png"
+         width=32" height="32">
+      </a></p>
+    <p><a href="https://github.com/amartzloff">Alice Martzloff</li></a> &#x2022;
+    <a href="https://github.com/Entenzahn">Philipp Piwonka</a></p>
+    <h4>Data sources</h4>
+    <p><a href="https://uidai.gov.in/">Indian population estimate for 2020</a><br />
+        <a href="https://www.kaggle.com/sudalairajkumar/covid19-in-india">COVID-19 in India</a><br />
+        <a href="https://sdgindiaindex.niti.gov.in/#/ranking">SDG India Index 2018-2020</a></p>
 </footer>
 </body>
 </html>
